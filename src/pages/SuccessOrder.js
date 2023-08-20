@@ -1,30 +1,85 @@
-import React from 'react'
+import React from "react";
 import styled from "styled-components";
-import Nav from '../components/Nav'
-import Button from '../elements/Button';
+import Nav from "../components/Nav";
+import Button from "../elements/Button";
 
 function SuccessOrder() {
-    const isLogin = localStorage.getItem("token")
-    return (
-        <div>
-            <Nav user_nav children={isLogin ? "마이페이지" : "로그인"} />
-            <Main>
-                <h1>주문/결제하기</h1>
-                <p>주문이 완료되었습니다 :)</p>
-                <Button
-                    children="메인으로"
-                    width="228px"
-                    height="68px"
-                    font_size="24px"
-                    font_weight="700"
-                />
-            </Main>
-        </div>
-    )
+  const isLogin = localStorage.getItem("token");
+  return (
+    <div>
+      <Nav user_nav children={isLogin ? "마이페이지" : "로그인"} />
+      <Main>
+        <OrderCompleteTitle>주문 완료</OrderCompleteTitle>
+        <OrderCompleteDescWrapper>
+          <OrderCompleteDescTxt>주문이 완료되었습니다.</OrderCompleteDescTxt>
+          <OrderCompleteDescTxt>
+            해당 부스에서 상품을 받아가세요.
+          </OrderCompleteDescTxt>
+        </OrderCompleteDescWrapper>
+        {/* 주문 번호 */}
+        <OrderNumWrapper>
+          <OrderNumTxt>주문 번호</OrderNumTxt>
+          <OrderNum>16</OrderNum>
+        </OrderNumWrapper>
+        {/* 수령 정보 */}
+        <OrderBooth>수령 부스: 임시부스명</OrderBooth>
+        <OrderProducts>츠루우메 나츠미깡 외 1개</OrderProducts>{" "}
+        {/*주문상품 연동되도록 수정 필요 */}
+        <Button
+          children="메인으로"
+          width="228px"
+          height="68px"
+          font_size="24px"
+          font_weight="700"
+        />
+      </Main>
+    </div>
+  );
 }
 
 const Main = styled.div`
-    display: flex;
-`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 80px 0px;
+`;
 
-export default SuccessOrder
+const OrderCompleteTitle = styled.p`
+  font-size: 50px;
+  font-weight: 900;
+`;
+
+const OrderCompleteDescWrapper = styled.div`
+  text-align: center;
+  margin: 20px 0px;
+`;
+
+const OrderCompleteDescTxt = styled.p`
+  margin: 5px 0px;
+`;
+
+const OrderNumWrapper = styled.div`
+  text-align: center;
+  margin: 30px 0px;
+`;
+
+const OrderNumTxt = styled.p`
+  font-weight: 600;
+`;
+
+const OrderNum = styled.p`
+  font-size: 70px;
+  font-weight: 1000;
+  color: #fe5c5c;
+`;
+
+const OrderBooth = styled.p`
+  margin: 20px 0px;
+`;
+
+const OrderProducts = styled.p`
+  font-weight: bold;
+  margin-bottom: 30px;
+`;
+
+export default SuccessOrder;
