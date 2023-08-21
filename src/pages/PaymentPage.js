@@ -17,7 +17,7 @@ function Payment() {
     (p) => p.product_id === location.state.product_id
   );
   const orderKind = location.state.order_kind;
-  const sum = location.state.total_price;
+  const price = location.state.total_price - location.state.shipping_fee;
 
   return (
     <div>
@@ -52,7 +52,7 @@ function Payment() {
           })}
         <div className="price-sum">
           <p>총 주문금액</p>
-          <p>{sum.toLocaleString()}원</p>
+          <p>{price.toLocaleString()}원</p>
         </div>
         <DeliveryInfo
           shipping_fee={
