@@ -2,9 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import Nav from "../components/Nav";
 import Button from "../elements/Button";
+import { useNavigate } from "react-router-dom";
 
 function SuccessOrder() {
   const isLogin = localStorage.getItem("token");
+  const navigate = useNavigate();
   return (
     <div>
       <Nav user_nav children={isLogin ? "마이페이지" : "로그인"} />
@@ -31,6 +33,7 @@ function SuccessOrder() {
           height="68px"
           font_size="24px"
           font_weight="700"
+          _onClick={() => navigate("/")}
         />
       </Main>
     </div>
