@@ -5,7 +5,11 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPaymentDB } from "../redux/modules/payment";
-import { darkGreyColor, lightMainColor } from "../assets/GlobalStyle";
+import {
+  darkGreyColor,
+  greyColor,
+  lightMainColor,
+} from "../assets/GlobalStyle";
 import { api } from "../shared/api";
 
 function MyPage() {
@@ -54,16 +58,18 @@ function MyPage() {
     <div>
       {userType === "SELLER" ? <Nav /> : <Nav user_nav />}
       <MyPageContainer>
-        <MemberInfoContainer>
+        <ContentContainer>
           <ContentTitle>회원 정보</ContentTitle>
+          <button id="edit" onClick={onEditClick}>
+            회원정보수정
+          </button>
           <MemberInfo>
-            <p>이름: </p>
+            <p>아이디: </p>
             <p>이메일: </p>
             <p>전화번호: </p>
-            <button onClick={onEditClick}>회원정보수정</button>
           </MemberInfo>
-        </MemberInfoContainer>
-        <WaitingOrderContainer>
+        </ContentContainer>
+        <ContentContainer>
           <ContentTitle>픽업 대기</ContentTitle>
           <OrderField>
             <p>주문일자</p>
@@ -93,8 +99,8 @@ function MyPage() {
               <button onClick={onCompletedOrderClick}>주문상세</button>
             </Order>
           </OrderList>
-        </WaitingOrderContainer>
-        <CompletedOrderContainer>
+        </ContentContainer>
+        <ContentContainer>
           <ContentTitle>픽업 완료</ContentTitle>
           <OrderField>
             <p>주문일자</p>
@@ -131,7 +137,7 @@ function MyPage() {
               <button onClick={onCompletedOrderClick}>주문상세</button>
             </Order>
           </OrderList>
-        </CompletedOrderContainer>
+        </ContentContainer>
       </MyPageContainer>
       <Footer />
     </div>
@@ -150,12 +156,25 @@ const MyPageContainer = styled.div`
   position: relative;
 `;
 
-const MemberInfoContainer = styled.div`
+const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 100%;
-  height: 100vh;
+  width: 70%;
+  border: 1px solid ${greyColor};
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  position: relative;
+  #edit {
+    background-color: ${lightMainColor};
+    border: 1px solid ${darkGreyColor};
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    top: 30px;
+    right: 20px;
+  }
 `;
 
 const MemberInfo = styled.div`
@@ -163,41 +182,27 @@ const MemberInfo = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  border: 1px solid black;
   border-radius: 10px;
+  background-color: ${lightMainColor};
   padding: 20px;
-`;
-
-const WaitingOrderContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  height: 100vh;
-`;
-
-const CompletedOrderContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  height: 100vh;
+  margin-bottom: 5px;
 `;
 
 const ContentTitle = styled.h1`
   font-size: 25px;
   font-weight: 600;
-  margin: 20px 0px;
+  margin: 20px 5px;
 `;
 
 const OrderField = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   width: 100%;
   background-color: ${lightMainColor};
-  padding: 5px;
+  padding: 5px 100px 5px 5px;
   border-radius: 10px;
+  margin-bottom: 5px;
 `;
 
 const OrderList = styled.ul`
@@ -205,24 +210,24 @@ const OrderList = styled.ul`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  border: 1px solid ${darkGreyColor};
-  border-radius: 5px;
 `;
 
 const Order = styled.li`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
-  width: 99%;
+  width: 100%;
+  margin: 10px;
+  padding: 5px 100px 5px 5px;
   border: 1px solid ${darkGreyColor};
   border-radius: 10px;
-  margin: 10px;
-  padding: 3px;
+  position: relative;
   button {
     background-color: ${lightMainColor};
     border: 1px solid ${darkGreyColor};
     border-radius: 5px;
+    padding: 1px 10px;
     position: absolute;
-    right: 70px;
+    right: 25px;
   }
 `;
