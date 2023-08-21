@@ -8,11 +8,13 @@ import PostCodeModal from "./PostCode";
 import Input from "../elements/Input";
 import Button from "../elements/Button";
 import { mainColor } from "../assets/GlobalStyle";
+import { useNavigate } from "react-router-dom";
 
 function DeliveryInfo(props) {
   const { shipping_fee, price, product_id, quantity, order_kind } = props;
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [orderer, setOrderer] = useState();
   const [orderPhone, setOrderPhone] = useState();
@@ -51,6 +53,17 @@ function DeliveryInfo(props) {
           ? sumPrice
           : sumPrice + props.difference,
     };
+    // (임시)결제 내역 DB에 추가하기 전에 주문 완료 페이지로 연결
+    navigate("/order-info", {
+      // state: {
+      //   total_price: sum + shippingFeeSum,
+      //   order_kind: "cart_order",
+      //   checkCartItem,
+      //   checkedProduct,
+      //   item,
+      //   shipping_fee: shippingFeeSum,
+      // },
+    });
     dispatch(addPatymentDB(data));
   };
 
