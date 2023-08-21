@@ -9,7 +9,6 @@ import Input from "../elements/Input";
 import Button from "../elements/Button";
 import Tab from "../elements/Tab";
 //assets
-import arrowUp from "../assets/images/icon-up-arrow.svg";
 import pwCheckOn from "../assets/images/check-on.png";
 import pwCheckOff from "../assets/images/check-off.png";
 
@@ -21,158 +20,94 @@ function SignUp() {
 
   const [tab, setTab] = useState(0);
   const [checkBox, setCheckBox] = useState(false);
-  const [dropdown, setDropDown] = useState(false);
 
   // 구매 회원가입 정보 저장
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
   const [pw2, setPw2] = useState("");
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [email2, setEmail2] = useState("");
-  const emailData = email + "@" + email2;
-  const [phoneData1, setPhoneData] = useState("");
-  const [phoneData2, setPhoneData2] = useState("");
-  const [phoneData3, setPhoneData3] = useState("");
-  const phoneData = phoneData1 + phoneData2 + phoneData3;
+  const [gender, setGender] = useState("");
+  const [birth, setBirth] = useState("");
+  const [phoneNum, setPhoneNum] = useState("");
 
   // 판매 회원가입 정보 저장
-  const [sellerId, setSellerId] = useState("");
   const [sellerPw, setSellerPw] = useState("");
   const [sellerPw2, setSellerPw2] = useState("");
-  const [sellerName, setSellerName] = useState("");
-  const [sellerEmail, setSellerEmail] = useState("");
-  const [sellerEmail2, setSellerEmail2] = useState("");
-  const sellerEmailData = sellerEmail + "@" + sellerEmail2;
-  const [sellerPhoneData1, setSellerPhoneData] = useState("");
-  const [sellerPhoneData2, setSellerPhoneData2] = useState("");
-  const [sellerPhoneData3, setSellerPhoneData3] = useState("");
-  const sellerPhoneData =
-    sellerPhoneData1 + sellerPhoneData2 + sellerPhoneData3;
-  const [bin, setBin] = useState("");
-  const [storeName, setStoreName] = useState("");
+  const [boothNum, setBoothNum] = useState("");
 
   //중복확인 체크
   const [isCheck, setIsCheck] = useState(false);
-  const [isCoNumCheck, setIsCoNumCheck] = useState(false);
 
   // 구매자 계정 에러 메세지
   const [idMessage, setIdMessage] = useState("");
   const [pwMessage, setPwMessage] = useState("");
   const [pw2Message, setPw2Message] = useState("");
   const [nameMessage, setNameMessage] = useState("");
-  const [emailMessage, setEmailMessage] = useState("");
-  const [phoneMessage, setPhoneMessage] = useState("");
+  const [genderMessage, setGenderMessage] = useState("");
+  const [birthMessage, setBirthMessage] = useState("");
+  const [phoneNumMessage, setPhoneNumMessage] = useState("");
 
   // 판매자 계정 에러 메세지
-  const [salesIdMessage, setSalesIdMessage] = useState("");
   const [salesPwMessage, setSalesPwMessage] = useState("");
   const [salesPw2Message, setSalesPw2Message] = useState("");
-  const [salesNameMessage, setSalesNameMessage] = useState("");
-  const [salesEmailMessage, setSalesEmailMessage] = useState("");
-  const [salesPhoneMessage, setSalesPhoneMessage] = useState("");
-  const [salesBinMessage, setSalesBinMessage] = useState("");
-  const [salesStoreNameMessage, setSalesStoreNameMessage] = useState("");
+  const [salesBoothNumMessage, setSalesBoothNumMessage] = useState("");
 
   // 구매자 계정 유효성 검사
   const [isPw, setIsPw] = useState();
   const [isPw2, setIsPw2] = useState();
   const [isId, setIsId] = useState();
   const [isName, setIsName] = useState();
-  const [isEmail, setIsEmail] = useState();
-  const [isPhone, setIsPhone] = useState();
+  const [isGender, setIsGender] = useState();
+  const [isBirth, setIsBirth] = useState();
+  const [isPhoneNum, setIsPhoneNum] = useState();
 
   // 판매자 계정 유효성 검사
-  const [salesIsId, setSalesIsId] = useState();
   const [salesIsPw, setSalesIsPw] = useState();
   const [salesIsPw2, setSalesIsPw2] = useState();
-  const [salesIsName, setSalesIsName] = useState();
-  const [salesIsEmail, setSalesIsEmail] = useState();
-  const [salesIsPhone, setSalesIsPhone] = useState();
-  const [salesIsBin, setSalesIsBin] = useState();
-  const [salesIsStoreName, setSalesIsStoreName] = useState();
+  const [salesIsBoothNum, setSalesIsBoothNum] = useState();
 
   const onClickLogo = () => {
     navigate(`/`);
   };
 
-  // 전화번호 입력 dropdown
-  const hadnleArrow = () => {
-    setDropDown(!dropdown);
-  };
-
-  const handleSelect = (e) => {
-    tab === 0
-      ? setPhoneData(e.target.textContent)
-      : setSellerPhoneData(e.target.textContent);
-    setDropDown(false);
-  };
-
   // Id 유효성 검사
   const idCheck = (e) => {
     setId(e.target.value);
-    setSellerId(e.target.value);
     const regId = /^[a-zA-Z][0-9a-zA-Z]{0,19}$/;
-    if (tab === 0) {
-      if (!regId.test(e.target.value)) {
-        setIdMessage("20자 이내의 영문 소문자,대문자,숫자만 사용 가능합니다.");
-        setIsId(false);
-      } else if (e.target.value === "") {
-        setIdMessage("필수 정보입니다");
-        setIsId(false);
-      } else {
-        setIdMessage("");
-        setIsId(true);
-      }
-    } else if (tab === 1) {
-      if (!regId.test(e.target.value)) {
-        setSalesIdMessage(
-          "20자 이내의 영문 소문자,대문자,숫자만 사용 가능합니다."
-        );
-        setSalesIsId(false);
-      } else if (e.target.value === "") {
-        setSalesIdMessage("필수 정보입니다");
-        setSalesIsId(false);
-      } else {
-        setSalesIdMessage("");
-        setSalesIsId(true);
-      }
+    if (!regId.test(e.target.value)) {
+      setIdMessage("20자 이내의 영문 소문자,대문자,숫자만 사용 가능합니다.");
+      setIsId(false);
+    } else if (e.target.value === "") {
+      setIdMessage("필수 정보입니다");
+      setIsId(false);
+    } else {
+      setIdMessage("");
+      setIsId(true);
     }
   };
 
   //ID중복검사 체크
   const dupCheck = () => {
     const signUpData = {
-      username: tab === 0 ? id : sellerId,
+      username: id,
     };
     apis
       .dupcheck(signUpData)
       .then((res) => {
-        tab === 0
-          ? setIdMessage(res.data.Success)
-          : setSalesIdMessage(res.data.Success);
+        setIdMessage(res.data.Success); //setIdMessage("사용 가능한 아이디입니다.");
       })
       .catch((error) => {
-        tab === 0
-          ? setIdMessage(error.response.data.FAIL_Message)
-          : setSalesIdMessage(error.response.data.FAIL_Message);
-        tab === 0 ? setIsId(false) : setSalesIsId(false);
+        setIdMessage(error.response.data.FAIL_Message);
+        setIsId(false);
       });
     setIsCheck(true);
   };
 
   // ID Input focus out 했을시 빈칸일때
   const idBlankCheck = () => {
-    if (tab === 0) {
-      if (id === "") {
-        setIdMessage("필수 정보입니다");
-        setIsId(false);
-      }
-    } else if (tab === 1) {
-      if (sellerId === "") {
-        setSalesIdMessage("필수 정보입니다");
-        setSalesIsId(false);
-      }
+    if (id === "") {
+      setIdMessage("필수 정보입니다");
+      setIsId(false);
     }
   };
 
@@ -273,215 +208,79 @@ function SignUp() {
     }
   };
 
-  const nameCheck = (e) => {
-    setName(e.target.value);
-    setSellerName(e.target.value);
-    if (tab === 0) {
-      if (e.target.value === "") {
-        setNameMessage("필수 정보입니다");
-        setIsName(false);
-      }
-    } else if (tab === 1) {
-      if (e.target.value === "") {
-        setSalesNameMessage("필수 정보입니다");
-        setSalesIsName(false);
-      }
-    }
-  };
-
   // Name Input focus out 했을시 빈칸일때
   const nameBlankCheck = () => {
-    if (tab === 0) {
-      if (name === "") {
-        setNameMessage("필수 정보입니다");
-        setIsName(false);
-      }
-    } else if (tab === 1) {
-      if (sellerName === "") {
-        setSalesNameMessage("필수 정보입니다");
-        setSalesIsName(false);
-      }
+    if (name === "") {
+      setNameMessage("필수 정보입니다");
+      setIsName(false);
+    } else {
+      setIsName(true);
     }
   };
 
-  // 이메일 유효성 검사
-  const emailCheck = (e) => {
-    setEmail(e.target.value);
-    setSellerEmail(e.target.value);
-    const regEmail =
-      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-
-    if (tab === 0) {
-      if (e.target.value === "") {
-        setEmailMessage("필수 정보입니다");
-        setIsEmail(false);
-      } else if (!regEmail.test(emailData)) {
-        setEmailMessage("잘못된 이메일 형식입니다.");
-        setIsEmail(false);
-      } else {
-        setEmailMessage("올바른 이메일 형식 입니다");
-        setIsEmail(true);
-      }
-    } else if (tab === 1) {
-      if (e.target.value === "") {
-        setSalesEmailMessage("필수 정보입니다");
-        setSalesIsEmail(false);
-      } else if (!regEmail.test(sellerEmailData)) {
-        setSalesEmailMessage("잘못된 이메일 형식입니다.");
-        setSalesIsEmail(false);
-      } else {
-        setSalesEmailMessage("올바른 이메일 형식 입니다");
-        setSalesIsEmail(true);
-      }
+  // Gender Input focus out 했을시 빈칸일때
+  const genderBlankCheck = () => {
+    if (gender === "") {
+      setGenderMessage("필수 정보입니다");
+      setIsGender(false);
+    } else {
+      setIsGender(true);
     }
   };
 
-  const email2Check = (e) => {
-    setEmail2(e.target.value);
-    setSellerEmail2(e.target.value);
-    const regEmail =
-      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-
-    if (tab === 0) {
-      if (e.target.value === "") {
-        setEmailMessage("필수 정보입니다");
-        setIsEmail(false);
-      } else if (!regEmail.test(emailData)) {
-        setEmailMessage("이메일 형식에 맞게 입력해주세요");
-        setIsEmail(false);
-      } else {
-        setEmailMessage("올바른 이메일 형식 입니다");
-        setIsEmail(true);
-      }
-    } else if (tab === 1) {
-      if (e.target.value === "") {
-        setSalesEmailMessage("필수 정보입니다");
-        setSalesIsEmail(false);
-      } else if (!regEmail.test(sellerEmailData)) {
-        setSalesEmailMessage("이메일 형식에 맞게 입력해주세요");
-        setSalesIsEmail(false);
-      } else {
-        setSalesEmailMessage("올바른 이메일 형식 입니다");
-        setSalesIsEmail(true);
-      }
+  // Birth Input focus out 했을시 빈칸일때
+  const birthBlankCheck = () => {
+    if (birth === "") {
+      setBirthMessage("필수 정보입니다");
+      setIsBirth(false);
+    } else {
+      setIsBirth(true);
     }
-  };
-
-  // Email Input focus out 했을시 빈칸일때
-  const emailBlankCheck = () => {
-    if (tab === 0) {
-      if (email === "") {
-        setEmailMessage("필수 정보입니다");
-        setIsEmail(false);
-      }
-    } else if (tab === 1) {
-      if (sellerEmail === "") {
-        setSalesEmailMessage("필수 정보입니다");
-        setSalesIsEmail(false);
-      }
-    }
-  };
-
-  // Phone Number 중복검사
-  const phoneCheck = (e) => {
-    setPhoneData3(e.target.value);
-    setSellerPhoneData3(e.target.value);
-    const signUpData = {
-      phone_number:
-        tab === 0
-          ? phoneData1 + phoneData2 + e.target.value
-          : sellerPhoneData1 + sellerPhoneData2 + e.target.value,
-    };
-    apis
-      .signUp(signUpData)
-      .then((res) => {})
-      .catch((error) => {
-        if (
-          error.response.data.phone_number ===
-          "해당 사용자 전화번호는 이미 존재합니다."
-        ) {
-          tab === 0
-            ? setPhoneMessage("해당 사용자 전화번호는 이미 존재합니다.")
-            : setSalesPhoneMessage("해당 사용자 전화번호는 이미 존재합니다.");
-          tab === 0 ? setIsPhone(false) : setSalesIsPhone(false);
-        } else {
-          tab === 0 ? setPhoneMessage("") : setSalesPhoneMessage("");
-        }
-      });
   };
 
   // Phone Input focus out 했을시 빈칸일때
-  const phoneBlankCheck = () => {
-    if (tab === 0) {
-      if (phoneData === "") {
-        setPhoneMessage("필수 정보입니다");
-        setIsPhone(false);
-      }
-    } else if (tab === 1) {
-      if (sellerPhoneData === "") {
-        setSalesPhoneMessage("필수 정보입니다");
-        setSalesIsPhone(false);
-      }
+  const phoneNumBlankCheck = () => {
+    if (phoneNum === "") {
+      setPhoneNumMessage("필수 정보입니다");
+      setIsPhoneNum(false);
+    } else {
+      setIsPhoneNum(true);
     }
   };
 
-  const handleComNumCheck = () => {
-    const companyNumberData = {
-      company_registration_number: bin,
-    };
-    apis
-      .companyNumCheck(companyNumberData)
-      .then((res) => {
-        setSalesBinMessage(res.data.Success);
-      })
-      .catch((error) => {
-        setSalesBinMessage(error.response.data.FAIL_Message);
-        setSalesIsBin(false);
-      });
-    setIsCoNumCheck(true);
-  };
-
-  // Bin Input focus out 했을시 빈칸일때
-  const binBlankCheck = () => {
-    if (bin === "") {
-      setSalesBinMessage("필수 정보입니다");
-      setSalesIsBin(false);
+  // Booth Num focus out 했을시 빈칸일때
+  const boothNumBlankCheck = () => {
+    if (boothNum === "") {
+      setSalesBoothNumMessage("필수 정보입니다");
+      setSalesIsBoothNum(false);
     }
   };
 
-  // Store Name focus out 했을시 빈칸일때
-  const storeNameBlankCheck = () => {
-    if (storeName === "") {
-      setSalesStoreNameMessage("필수 정보입니다");
-      setSalesIsStoreName(false);
-    }
-  };
-
-  // StoreName 중복검사
-  const storeNameCheck = (e) => {
-    setStoreName(e.target.value);
-    const storeNameData = {
+  // BoothNum 중복검사
+  const isBoothNum = (e) => {
+    setBoothNum(e.target.value);
+    const boothNumData = {
       store_name: e.target.value,
     };
     apis
-      .sellerSignUp(storeNameData)
+      .sellerSignUp(boothNumData)
       .then((res) => {})
       .catch((error) => {
         console.log(error);
         if (
           error.response.data.store_name ===
-          "해당 스토어이름은 이미 존재합니다."
+          "해당 부스의 계정이 이미 존재합니다."
         ) {
-          setSalesStoreNameMessage("해당 스토어이름은 이미 존재합니다.");
-          setSalesIsStoreName(false);
+          setSalesBoothNumMessage("해당 부스의 계정이 이미 존재합니다.");
+          setSalesIsBoothNum(false);
         } else if (
           error.response.data.store_name === "이 필드는 blank일 수 없습니다."
         ) {
-          setSalesStoreNameMessage("필수 정보입니다.");
-          setSalesIsStoreName(false);
+          setSalesBoothNumMessage("필수 정보입니다.");
+          setSalesIsBoothNum(false);
         } else {
-          setSalesStoreNameMessage("사용 가능한 스토어 이름 입니다.");
-          setSalesIsStoreName(true);
+          setSalesBoothNumMessage("계정 생성이 가능한 부스입니다.");
+          setSalesIsBoothNum(true);
         }
       });
   };
@@ -493,9 +292,10 @@ function SignUp() {
         !isId ||
         !isPw ||
         !isPw2 ||
-        !isEmail ||
         name === "" ||
-        phoneData === "" ||
+        !isGender ||
+        !isBirth ||
+        phoneNum === "" ||
         !checkBox
       ) {
         return true;
@@ -503,17 +303,7 @@ function SignUp() {
         return false;
       }
     } else {
-      if (
-        !salesIsId ||
-        !salesIsPw ||
-        !salesIsPw2 ||
-        !salesIsEmail ||
-        salesIsName === "" ||
-        sellerPhoneData === "" ||
-        !salesIsBin ||
-        !salesIsStoreName ||
-        !checkBox
-      ) {
+      if (!salesIsPw || !salesIsPw2 || !salesIsBoothNum || !checkBox) {
         return true;
       } else {
         return false;
@@ -533,25 +323,18 @@ function SignUp() {
         window.alert("아이디 중복확인을 해주세요.");
       }
       const signupData = {
-        username: isCheck === true ? id : "",
-        password: pw,
-        password2: pw2,
-        phone_number: phoneData,
+        id: isCheck === true ? id : "",
+        pwd: pw,
         name: name,
+        gender: gender,
+        age: 2024 - parseInt(birth) / 10000,
+        phone_number: phoneNum,
       };
       dispatch(signUpDB(signupData));
     } else {
-      if (isCheck === false) {
-        window.alert("아이디 중복확인을 해주세요.");
-      }
       const signupData = {
-        username: isCheck === true ? sellerId : "",
-        password: sellerPw,
-        password2: sellerPw2,
-        phone_number: sellerPhoneData,
-        name: sellerName,
-        company_registration_number: isCoNumCheck === true ? bin : 0,
-        store_name: storeName,
+        pwd: sellerPw,
+        booth_number: boothNum,
       };
       dispatch(sellerSignUpDB(signupData));
     }
@@ -651,66 +434,79 @@ function SignUp() {
                   </Message>
                 </>
               )}
-              <Phone>
-                <Input
-                  defaultValue={phoneData1}
-                  label="휴대전화 번호"
-                  height="44px"
-                  _onBlur={phoneBlankCheck}
-                />
-                <Input
-                  height="44px"
-                  _onChange={(e) => setPhoneData2(e.target.value)}
-                  _onBlur={phoneBlankCheck}
-                />
-                <Input
-                  height="44px"
-                  _onBlur={phoneBlankCheck}
-                  _onChange={phoneCheck}
-                />
-              </Phone>
-              {phoneData.length >= 0 && (
+              <Input
+                label="이름"
+                height="44px"
+                _onChange={(e) => setName(e.target.value)}
+                _onBlur={nameBlankCheck}
+                borderColor={
+                  name.length >= 0 && (isName ? mainColor : redColor)
+                }
+                borderBottomColor={
+                  name.length >= 0 && (isName ? mainColor : redColor)
+                }
+              />
+              {name.length >= 0 && (
                 <>
-                  <Message className={`${isPhone ? "success" : "error"}`}>
-                    {phoneMessage}
+                  <Message className={`${isName ? "success" : "error"}`}>
+                    {nameMessage}
                   </Message>
                 </>
               )}
-              <Email>
-                <Input
-                  label="이메일"
-                  width="120px"
-                  height="44px"
-                  _onChange={emailCheck}
-                  _onBlur={emailBlankCheck}
-                  borderColor={
-                    email.length >= 0 && (isEmail ? mainColor : redColor)
-                  }
-                  borderBottomColor={
-                    email.length >= 0 && (isEmail ? mainColor : redColor)
-                  }
-                />
-                <p className="at">@</p>
-                <Input
-                  width="120px"
-                  height="44px"
-                  _onChange={email2Check}
-                  _onBlur={emailBlankCheck}
-                  borderColor={
-                    email.length >= 0 && (isEmail ? mainColor : redColor)
-                  }
-                  borderBottomColor={
-                    email.length >= 0 && (isEmail ? mainColor : redColor)
-                  }
-                />
-              </Email>
-              {emailData.length >= 0 && (
+              <Input
+                label="생년월일(8자리)"
+                height="44px"
+                _onChange={(e) => setBirth(e.target.value)}
+                _onBlur={birthBlankCheck}
+                borderColor={
+                  birth.length >= 0 && (isBirth ? mainColor : redColor)
+                }
+                borderBottomColor={
+                  birth.length >= 0 && (isBirth ? mainColor : redColor)
+                }
+              />
+              {birth.length >= 0 && (
                 <>
-                  <Message
-                    className={`${isEmail ? "success" : "error"}`}
-                    style={{ marginBottom: "15px" }}
-                  >
-                    {emailMessage}
+                  <Message className={`${isBirth ? "success" : "error"}`}>
+                    {birthMessage}
+                  </Message>
+                </>
+              )}
+              <Input
+                label="성별(남/여)"
+                height="44px"
+                _onChange={(e) => setGender(e.target.value)}
+                _onBlur={genderBlankCheck}
+                borderColor={
+                  gender.length >= 0 && (isGender ? mainColor : redColor)
+                }
+                borderBottomColor={
+                  gender.length >= 0 && (isGender ? mainColor : redColor)
+                }
+              />
+              {gender.length >= 0 && (
+                <>
+                  <Message className={`${isGender ? "success" : "error"}`}>
+                    {genderMessage}
+                  </Message>
+                </>
+              )}
+              <Input
+                label="전화번호( - 없이 입력)"
+                height="44px"
+                _onChange={(e) => setPhoneNum(e.target.value)}
+                _onBlur={phoneNumBlankCheck}
+                borderColor={
+                  phoneNum.length >= 0 && (isPhoneNum ? mainColor : redColor)
+                }
+                borderBottomColor={
+                  phoneNum.length >= 0 && (isPhoneNum ? mainColor : redColor)
+                }
+              />
+              {phoneNum.length >= 0 && (
+                <>
+                  <Message className={`${isPhoneNum ? "success" : "error"}`}>
+                    {phoneNumMessage}
                   </Message>
                 </>
               )}
@@ -720,34 +516,26 @@ function SignUp() {
         {tab === 1 && (
           <ul className="form-wrap">
             <li className="sales-user">
-              <div className="id-container">
-                <Input
-                  width="246px"
-                  height="44px"
-                  label="아이디"
-                  margin="0 12px 0 0"
-                  _onChange={idCheck}
-                  _onBlur={idBlankCheck}
-                  borderColor={
-                    sellerId.length >= 0 && (salesIsId ? mainColor : redColor)
-                  }
-                  borderBottomColor={
-                    sellerId.length >= 0 && (salesIsId ? mainColor : redColor)
-                  }
-                />
-                <Button
-                  height="44px"
-                  align="end"
-                  width="122px"
-                  _onClick={dupCheck}
-                >
-                  중복확인
-                </Button>
-              </div>
-              {sellerId.length >= 0 && (
+              <Input
+                label="부스 번호"
+                height="44px"
+                _onChange={isBoothNum}
+                _onBlur={boothNumBlankCheck}
+                borderColor={
+                  boothNum.length >= 0 &&
+                  (salesIsBoothNum ? mainColor : redColor)
+                }
+                borderBottomColor={
+                  boothNum.length >= 0 &&
+                  (salesIsBoothNum ? mainColor : redColor)
+                }
+              />
+              {boothNum.length >= 0 && (
                 <>
-                  <Message className={`${salesIsId ? "success" : "error"}`}>
-                    {salesIdMessage}
+                  <Message
+                    className={`${salesIsBoothNum ? "success" : "error"}`}
+                  >
+                    {salesBoothNumMessage}
                   </Message>
                 </>
               )}
@@ -802,37 +590,6 @@ function SignUp() {
                 <>
                   <Message className={`${salesIsPw2 ? "success" : "error"}`}>
                     {salesPw2Message}
-                  </Message>
-                </>
-              )}
-
-              {bin.length >= 0 && (
-                <>
-                  <Message className={`${salesIsBin ? "success" : "error"}`}>
-                    {salesBinMessage}
-                  </Message>
-                </>
-              )}
-              <Input
-                label="부스 번호"
-                height="44px"
-                _onChange={storeNameCheck}
-                _onBlur={storeNameBlankCheck}
-                borderColor={
-                  storeName.length >= 0 &&
-                  (salesIsStoreName ? mainColor : redColor)
-                }
-                borderBottomColor={
-                  storeName.length >= 0 &&
-                  (salesIsStoreName ? mainColor : redColor)
-                }
-              />
-              {storeName.length >= 0 && (
-                <>
-                  <Message
-                    className={`${salesIsStoreName ? "success" : "error"}`}
-                  >
-                    {salesStoreNameMessage}
                   </Message>
                 </>
               )}
@@ -940,77 +697,13 @@ const SignUpForm = styled.div`
         img {
           position: absolute;
           bottom: 8px;
-          left: 338px;
+          left: 200px;
         }
       }
     }
   }
   img.off {
     transform: rotate(180deg);
-  }
-`;
-
-const Phone = styled.div`
-  display: flex;
-  align-items: end;
-  justify-content: center;
-  label:first-child {
-    margin-right: 12px;
-    position: relative;
-  }
-  img {
-    position: absolute;
-    top: 58px;
-    left: 88px;
-    cursor: pointer;
-  }
-  label:last-child {
-    margin-left: 12px;
-  }
-  .dropdown {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    .dropdown-items {
-      position: absolute;
-      z-index: 2;
-      background-color: white;
-      border: 1px solid #c4c4c4;
-      top: 100px;
-      width: 114.84px;
-      border-radius: 5px;
-      height: 100px;
-      overflow-y: scroll;
-      box-shadow: 0 2px 5px 1px rgba(64 60 67 / 16%);
-      transition: border-color 200ms ease-in, padding 200ms ease-in,
-        max-height 200ms ease-in, box-shadow 200ms ease-in;
-      padding-top: 6px;
-      box-sizing: border-box;
-      .dropdown-item {
-        width: 100%;
-        height: 28px;
-        line-height: 25px;
-        text-align: center;
-        cursor: pointer;
-        &:hover {
-          background-color: #e0e0e0;
-          transition: all 0.5s;
-        }
-      }
-    }
-  }
-`;
-
-const Email = styled.div`
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  input {
-    width: 100%;
-  }
-  .at {
-    width: 18px;
-    margin: 0 11px 13px 11px;
   }
 `;
 
