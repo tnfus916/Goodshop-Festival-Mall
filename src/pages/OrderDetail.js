@@ -1,30 +1,28 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { api } from "../shared/api";
 import { useSelector } from "react-redux";
 
 import Nav from "../components/Nav";
-import { useDispatch } from "react-redux";
-import { getOneProductDB } from "../redux/modules/product";
 import PaymentGrid from "../components/PaymentGrid";
 
 function OrderDetail() {
   const isLogin = localStorage.getItem("token");
   const location = useLocation();
-  const {id} = useParams();
+  const { id } = useParams();
   const productList = useSelector((state) => state.product.products);
   const [orderDetails, setOrderDetails] = useState({});
   const [orderProducts, setOrderProducts] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     const fetchOrderDetails = async () => {
-        await api.get(`/order/${id}`).then((res) => {
-            setOrderDetails(res.data.results[0]);
-            setOrderProducts(res.data.results[0].order_items);
-        })
-    }
-  })
+      await api.get(`/order/${id}`).then((res) => {
+        setOrderDetails(res.data.results[0]);
+        setOrderProducts(res.data.results[0].order_items);
+      });
+    };
+  });
 
   return (
     <>
@@ -45,18 +43,16 @@ function OrderDetail() {
           </div>
         </PaymentNav>
         {orderProducts.map((item, idx) => {
-            return(
-                <PaymentGrid
-                key={item}
-                {...item}
-                item={location.state.checkedProduct.find(
-                    (p, i) => item.product_id === p.product_id
-                  )
-                }
-                />
-            )
+          return (
+            <PaymentGrid
+              key={item}
+              {...item}
+              item={location.state.checkedProduct.find(
+                (p, i) => item.product_id === p.product_id
+              )}
+            />
+          );
         })}
-
 
         <div className="price-sum">
           <p>총 주문금액</p>
@@ -88,7 +84,7 @@ const Main = styled.div`
     @media screen and (max-width: 1300px) {
       width: 100%;
     }
-    P {
+    p {
       &:first-child {
         font-size: 18px;
         font-weight: 500;
@@ -106,8 +102,13 @@ const OrderInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  @media screen and(max-width: 1300px){
+  @media screen and (max-width: 1300px) {
     width: 100%;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 15px;
+    margin-bottom: 5px;
   }
 `;
 
