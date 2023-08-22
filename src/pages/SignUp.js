@@ -133,7 +133,7 @@ function SignUp() {
       if (e.target.value === "") {
         setSalesPwMessage("필수 정보입니다");
         setSalesIsPw(false);
-      } else if (!regPw.test(sellerPw)) {
+      } else if (!regPw.test(e.target.value)) {
         setSalesPwMessage("8자 이상 영문, 숫자 조합으로 입력해주세요");
         setSalesIsPw(false);
       } else {
@@ -260,7 +260,7 @@ function SignUp() {
   const isBoothNum = (e) => {
     setBoothNum(e.target.value);
     const boothNumData = {
-      store_name: e.target.value,
+      booth_num: e.target.value,
     };
     apis
       .sellerSignUp(boothNumData)
@@ -268,13 +268,13 @@ function SignUp() {
       .catch((error) => {
         console.log(error);
         if (
-          error.response.data.store_name ===
+          error.response.data.booth_num ===
           "해당 부스의 계정이 이미 존재합니다."
         ) {
           setSalesBoothNumMessage("해당 부스의 계정이 이미 존재합니다.");
           setSalesIsBoothNum(false);
         } else if (
-          error.response.data.store_name === "이 필드는 blank일 수 없습니다."
+          error.response.data.booth_num === "이 필드는 blank일 수 없습니다."
         ) {
           setSalesBoothNumMessage("필수 정보입니다.");
           setSalesIsBoothNum(false);
@@ -292,10 +292,10 @@ function SignUp() {
         !isId ||
         !isPw ||
         !isPw2 ||
-        name === "" ||
+        !isName ||
         !isGender ||
         !isBirth ||
-        phoneNum === "" ||
+        !isPhoneNum ||
         !checkBox
       ) {
         return true;
@@ -303,7 +303,7 @@ function SignUp() {
         return false;
       }
     } else {
-      if (!salesIsPw || !salesIsPw2 || !salesIsBoothNum || !checkBox) {
+      if (!salesIsPw || !salesIsPw2 || !salesIsBoothNum) {
         return true;
       } else {
         return false;
@@ -348,8 +348,8 @@ function SignUp() {
       <Tab
         tab={tab}
         setTab={setTab}
-        children="구매회원가입"
-        children2="판매회원가입"
+        children="고객 회원가입"
+        children2="판매자 회원가입"
       />
       <SignUpForm>
         {tab === 0 && (
@@ -597,29 +597,31 @@ function SignUp() {
           </ul>
         )}
       </SignUpForm>
-      <label className="checkbox-label">
-        <input type="checkbox" onClick={handleCheck} />
-        <p>
-          굿샵의 이용약관 및 개인 정보처리 방침에 대한 내용을 확인하였고
-          동의합니다.
-        </p>
-      </label>
       {tab === 0 ? (
-        <Button
-          width="380px"
-          height="50px"
-          margin="0px 0px 100px"
-          font_size="17px"
-          _disabled={buttoncheck()}
-          _onClick={handleSignUp}
-        >
-          가입하기
-        </Button>
+        <>
+          <label className="checkbox-label">
+            <input type="checkbox" onClick={handleCheck} />
+            <p>
+              굿샵의 이용약관 및 개인 정보처리 방침에 대한 내용을 확인하였고
+              동의합니다.
+            </p>
+          </label>
+          <Button
+            width="380px"
+            height="50px"
+            margin="0px 0px 100px"
+            font_size="17px"
+            _disabled={buttoncheck()}
+            _onClick={handleSignUp}
+          >
+            가입하기
+          </Button>
+        </>
       ) : (
         <Button
           width="380px"
           height="50px"
-          margin="0px 0px 100px"
+          margin="40px 0px 100px"
           font_size="17px"
           _disabled={buttoncheck()}
           _onClick={handleSignUp}
