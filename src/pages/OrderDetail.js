@@ -11,9 +11,14 @@ function OrderDetail() {
   const isLogin = localStorage.getItem("token");
   const location = useLocation();
   const { id } = useParams();
-  const productList = useSelector((state) => state.product.products);
   const [orderDetails, setOrderDetails] = useState({});
   const [orderProducts, setOrderProducts] = useState([]);
+
+  const productList = useSelector((state) => state.product.products);
+  const cart = useSelector((state) => state.cart.cartList);
+  const cartId = cart.map((c) => c.product_id);
+  const item = productList.filter((i) => cartId.includes(i.product_id));
+  const sample = cart[0];
 
   useEffect(() => {
     const fetchOrderDetails = async () => {
@@ -30,10 +35,10 @@ function OrderDetail() {
       <Main>
         <h1>주문 상세</h1>
         <OrderInfo>
-          <p>주문 번호 : {orderDetails.order_id}</p>
-          <p>주문 일자 : {orderDetails.date}</p>
-          <p>결제 방법 : {orderDetails.payment_type}</p>
-          <p>픽업 상태 : {orderDetails.pickup_state}</p>
+          <p>주문 번호 : 16{orderDetails.order_id}</p>
+          <p>주문 일자 : 2023.08.20{orderDetails.date}</p>
+          <p>결제 방법 : 현금{orderDetails.payment_type}</p>
+          <p>픽업 상태 : 픽업 대기{orderDetails.pickup_state}</p>
         </OrderInfo>
 
         <PaymentNav>
@@ -42,7 +47,7 @@ function OrderDetail() {
             <p>주문금액</p>
           </div>
         </PaymentNav>
-        {orderProducts.map((item, idx) => {
+        {/* {orderProducts.map((item, idx) => {
           return (
             <PaymentGrid
               key={item}
@@ -52,11 +57,20 @@ function OrderDetail() {
               )}
             />
           );
-        })}
+        })} */}
+
+        {/* 임시로 카트의 상품 하나를 출력 */}
+        {console.log(sample)}
+        {console.log(item)}
+        <PaymentGrid
+          key={sample.product_id}
+          item={item.find((p, i) => sample.product_id === p.product_id)}
+          quantity={sample.quantity}
+        />
 
         <div className="price-sum">
           <p>총 주문금액</p>
-          <p>{orderDetails.total_price}원</p>
+          <p>{orderDetails.total_price}66,669원</p>
         </div>
       </Main>
     </>
@@ -102,13 +116,15 @@ const OrderInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  height: auto;
+  width: 1280px;
+  margin-bottom: 10px;
   @media screen and (max-width: 1300px) {
     width: 100%;
-    margin-bottom: 10px;
   }
   p {
     font-size: 15px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
 `;
 
