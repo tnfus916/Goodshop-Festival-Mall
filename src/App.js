@@ -14,6 +14,7 @@ import Search from "./pages/Search";
 import MyPage from "./pages/MyPage";
 import SuccessOrder from "./pages/SuccessOrder";
 import UserInfoEdit from "./pages/UserInfoEdit";
+import OrderDetail from "./pages/OrderDetail";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/mypage/edit" element={<UserInfoEdit />} />
         <Route path="/order-info" element={<SuccessOrder />} />
+        <Route path="/order-detail" element={<OrderDetail/>}/>
       </Routes>
     </div>
   );

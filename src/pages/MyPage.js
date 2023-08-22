@@ -4,7 +4,7 @@ import Nav from "../components/Nav";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getPaymentDB } from "../redux/modules/payment";
+import { addPaymentDB } from "../redux/modules/payment";
 import { darkGreyColor, lightMainColor } from "../assets/GlobalStyle";
 import { api } from "../shared/api";
 
@@ -34,20 +34,20 @@ function MyPage() {
     });
   };
 
-  useEffect(() => {
-    dispatch(getPaymentDB(id));
-  }, [dispatch, id]);
+  // useEffect(() => {
+  //   dispatch(addPaymentDB(id));
+  // }, [dispatch, id]);
 
   const onEditClick = () => {
     navigate(`/mypage/edit`);
   };
 
   const onWaitingOrderClick = (e) => {
-    navigate(`/order/${e.target.id}`);
+    navigate(`/order-detail/${e.target.id}`);
   };
 
   const onCompletedOrderClick = (e) => {
-    navigate(`/order/${e.target.id}`);
+    navigate(`/order-detail/${e.target.id}`);
   };
 
   return (
