@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import React, { useState } from "react";
-import { addPatymentDB } from "../redux/modules/payment";
+import { addPaymentDB } from "../redux/modules/payment";
 import styled from "styled-components";
 // Component
 import PostCodeModal from "./PostCode";
@@ -64,7 +64,7 @@ function DeliveryInfo(props) {
       //   shipping_fee: shippingFeeSum,
       // },
     });
-    dispatch(addPatymentDB(data));
+    dispatch(addPaymentDB(data));
   };
 
   return (
