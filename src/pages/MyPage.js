@@ -10,7 +10,7 @@ import {
   greyColor,
   lightMainColor,
 } from "../assets/GlobalStyle";
-import { api } from "../shared/api";
+import { api, apis } from "../shared/api";
 
 function MyPage() {
   const { id } = useParams();
@@ -18,8 +18,8 @@ function MyPage() {
   const dispatch = useDispatch();
   const userType = localStorage.getItem("type");
   const isLogin = localStorage.getItem("token");
-  // const payment = useSelector((state) => state.payment.paymentList);
-  // const user= useSelector((state) => state.user.id);
+  const payment = useSelector((state) => state.payment.paymentList);
+  const user = useSelector((state) => state.user.user);
   const [waitOrderList, setWaitOrderList] = useState([]);
   const [completedOrderList, setCompletedOrderList] = useState([]);
 
@@ -27,20 +27,30 @@ function MyPage() {
 
   // 픽업 대기, 주문 완료에 따른 주문 리스트 가져오기
   const getWaitingOrder = async () => {
-    await api.get(`/order/${id}`).then((res) => {
-      setWaitOrderList((prev) => prev.concat(res.data.results));
-    });
+    apis
+      .getOrder(id)
+      .then((res) => {
+        setWaitOrderList((prev) => prev.concat(res.data.results));
+      })
+      .error((err) => {
+        console.log("주문 내역을 찾을 수 없습니다", err);
+      });
   };
 
   const getCompletedOrder = async () => {
-    await api.get(`/order/${id}`).then((res) => {
-      setCompletedOrderList((prev) => prev.concat(res.data.results));
-    });
+    apis
+      .getOrder(id)
+      .then((res) => {
+        setCompletedOrderList((prev) => prev.concat(res.data.results));
+      })
+      .error((err) => {
+        console.log("주문 내역을 찾을 수 없습니다", err);
+      });
   };
 
   useEffect(() => {
-    dispatch(getPaymentDB(id));
-  }, [dispatch, id]);
+    dispatch(getPaymentDB());
+  }, [dispatch]);
 
   const onEditClick = () => {
     navigate(`/mypage/edit`);
@@ -64,76 +74,43 @@ function MyPage() {
             회원정보수정
           </button>
           <MemberInfo>
+            <p>이름: </p>
             <p>아이디: </p>
-            <p>이메일: </p>
             <p>전화번호: </p>
           </MemberInfo>
         </ContentContainer>
         <ContentContainer>
-          <ContentTitle>픽업 대기</ContentTitle>
+          <ContentTitle>주문 내역</ContentTitle>
           <OrderField>
             <p>주문일자</p>
             <p>주문번호</p>
-            <p>결제방법</p>
+            <p>주문상태</p>
             <p>주문금액</p>
           </OrderField>
           <OrderList>
-            {waitOrderList.map((order, idx) => {
-              return (
-                <Order key={idx}>
-                  <p>{order.order_date}</p>
-                  <p>{order.order_id}</p>
-                  <p>{order.payment_type}</p>
-                  <p>{order.total_price}</p>
-                  <button id={order.order_id} onClick={onWaitingOrderClick}>
-                    주문상세
-                  </button>
-                </Order>
-              );
-            })}
+            {payment && payment.length === 0 ? (
+              <p>주문 내역이 없습니다.</p>
+            ) : (
+              waitOrderList.map((order, idx) => {
+                return (
+                  <Order key={idx}>
+                    <p>{order.order_date}</p>
+                    <p>{order.order_id}</p>
+                    <p>{order.payment_type}</p>
+                    <p>{order.total_price}</p>
+                    <button id={order.order_id} onClick={onWaitingOrderClick}>
+                      주문상세
+                    </button>
+                  </Order>
+                );
+              })
+            )}
+            {/* dummy */}
             <Order>
-              <p>주문일자</p>
-              <p>주문번호</p>
-              <p>결제방법</p>
-              <p>주문금액</p>
-              <button onClick={onCompletedOrderClick}>주문상세</button>
-            </Order>
-          </OrderList>
-        </ContentContainer>
-        <ContentContainer>
-          <ContentTitle>픽업 완료</ContentTitle>
-          <OrderField>
-            <p>주문일자</p>
-            <p>주문번호</p>
-            <p>결제방법</p>
-            <p>주문금액</p>
-          </OrderField>
-          <OrderList>
-            {completedOrderList.map((order, idx) => {
-              return (
-                <Order key={idx}>
-                  <p>{order.order_date}</p>
-                  <p>{order.order_id}</p>
-                  <p>{order.payment_type}</p>
-                  <p>{order.total_price}</p>
-                  <button id={order.order_id} onClick={onCompletedOrderClick}>
-                    주문상세
-                  </button>
-                </Order>
-              );
-            })}
-            <Order>
-              <p>주문일자</p>
-              <p>주문번호</p>
-              <p>결제방법</p>
-              <p>주문금액</p>
-              <button onClick={onCompletedOrderClick}>주문상세</button>
-            </Order>
-            <Order>
-              <p>주문일자</p>
-              <p>주문번호</p>
-              <p>결제방법</p>
-              <p>주문금액</p>
+              <p>23/08/22</p>
+              <p>1002131122</p>
+              <p>픽업 대기</p>
+              <p>23000원</p>
               <button onClick={onCompletedOrderClick}>주문상세</button>
             </Order>
           </OrderList>
@@ -160,7 +137,7 @@ const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 70%;
+  width: 60%;
   border: 1px solid ${greyColor};
   border-radius: 10px;
   padding: 10px;
