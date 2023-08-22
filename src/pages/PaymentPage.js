@@ -21,7 +21,7 @@ function Payment() {
 
   return (
     <div>
-      <Nav user_nav children={isLogin ? "마이페이지" : "로그인"} />
+      <Nav user_nav />
       <Main>
         <h1>주문/결제하기</h1>
         <PaymentNav>
