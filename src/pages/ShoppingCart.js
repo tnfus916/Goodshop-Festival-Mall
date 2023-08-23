@@ -193,7 +193,6 @@ function ShoppingCart() {
     <div>
       <Nav
         user_nav
-        children={isLogin ? "마이페이지" : "로그인"}
         color={location.state?.isCart ? `${darkGreyColor}` : "none"}
       />
       <Main>

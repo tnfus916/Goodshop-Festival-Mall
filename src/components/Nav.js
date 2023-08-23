@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { apis } from "../shared/api";
 import styled from "styled-components";
-// Component
-import UserModal from "./UserModal";
 // elements
 import Button from "../elements/Button";
 import Input from "../elements/Input";

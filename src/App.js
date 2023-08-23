@@ -13,7 +13,6 @@ import Payment from "./pages/PaymentPage";
 import Search from "./pages/Search";
 import MyPage from "./pages/MyPage";
 import SuccessOrder from "./pages/SuccessOrder";
-import UserInfoEdit from "./pages/UserInfoEdit";
 import OrderDetail from "./pages/OrderDetail";
 
 function App() {
@@ -31,9 +30,8 @@ function App() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/search" element={<Search />} />
         <Route path="/mypage" element={<MyPage />} />
-        <Route path="/mypage/edit" element={<UserInfoEdit />} />
         <Route path="/order-info" element={<SuccessOrder />} />
-        <Route path="/order-detail" element={<OrderDetail/>}/>
+        <Route path="/order-detail" element={<OrderDetail />} />
       </Routes>
     </div>
   );

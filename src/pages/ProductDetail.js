@@ -37,12 +37,6 @@ function ProductDetail() {
   const [quantity, setQuantity] = useState(1);
   const [modal, setModal] = useState(0);
   const [itemDupCheck, setItemDupCheck] = useState(true);
-  const [tabMenu, setTabMenu] = useState([
-    "버튼",
-    "리뷰",
-    "Q&A",
-    "반품/교환정보",
-  ]);
   const [isActive, setIsActive] = useState(0);
 
   useEffect(() => {
@@ -121,11 +115,7 @@ function ProductDetail() {
 
   return (
     <div>
-      {userType === "SELLER" ? (
-        <Nav />
-      ) : (
-        <Nav user_nav children={isLogin ? "마이페이지" : "로그인"} />
-      )}
+      {userType === "SELLER" ? <Nav /> : <Nav user_nav />}
       <ProductDetailContainer>
         <img src={product.image} alt="" />
         <div className="container-right">

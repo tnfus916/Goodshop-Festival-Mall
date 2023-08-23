@@ -35,7 +35,7 @@ function OrderDetail() {
       <Main>
         <h1>주문 상세</h1>
         <OrderInfo>
-          <p>주문 번호 : 16{orderDetails.order_id}</p>
+          <p>주문 번호 : 1002131122{orderDetails.order_id}</p>
           <p>주문 일자 : 2023.08.20{orderDetails.date}</p>
           <p>결제 방법 : 현금{orderDetails.payment_type}</p>
           <p>픽업 상태 : 픽업 대기{orderDetails.pickup_state}</p>
