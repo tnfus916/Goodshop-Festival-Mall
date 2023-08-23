@@ -140,55 +140,11 @@ function DeliveryInfo(props) {
         <div className="payment-option">
           <p className="container-title">결제수단</p>
           <div className="option">
-            <label>
-              <input
-                type="radio"
-                name="payment-option"
-                id="CARD"
-                onChange={(e) => setPaymentMethod(e.target.id)}
-              />
-              신용/체크카드
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="payment-option"
-                id="DEPOSIT"
-                onChange={(e) => setPaymentMethod(e.target.id)}
-              />
-              무통장 입금
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="payment-option"
-                id="PHONE_PAYMENT"
-                onChange={(e) => setPaymentMethod(e.target.id)}
-              />
-              휴대폰 결제
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="payment-option"
-                id="NAVERPAY"
-                onChange={(e) => setPaymentMethod(e.target.id)}
-              />
-              네이버페이
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="payment-option"
-                id="KAKAOPAY"
-                onChange={(e) => setPaymentMethod(e.target.id)}
-              />
-              카카오페이
-            </label>
+            <p>결제는 현장에서 진행됩니다.</p>
           </div>
         </div>
         <div className="final-payment">
-          <p className="final-payment_txt">최종결제 정보</p>
+          <p className="final-payment_txt">최종주문 정보</p>
           <div className="final-payment_info">
             <div className="payment-container_top">
               <div>
@@ -206,17 +162,12 @@ function DeliveryInfo(props) {
                 </p>
               </div>
               <div>
-                <div>
-                  <p>-배송비</p>
-                  <p>
-                    <span>{shipping_fee.toLocaleString()}</span>
-                    <span>원</span>
-                  </p>
+                <div> 
                 </div>
               </div>
               <div>
                 <p>-결제금액</p>
-                <p>{sumPrice.toLocaleString()}원</p>
+                <p>{price.toLocaleString()}원</p>
               </div>
             </div>
             <div className="payment-container_bottom">
@@ -232,7 +183,7 @@ function DeliveryInfo(props) {
                 _disabled={paymentBtnCheck()}
                 _onClick={handlePayment}
               >
-                결제하기
+                주문하기
               </Button>
             </div>
           </div>

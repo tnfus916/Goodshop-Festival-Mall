@@ -16,6 +16,7 @@ function SellerCenter() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const sellerProducts = useSelector((state) => state.product.sellerProducts);
+  const sellerOrders = useSelector((state) => state.product.sellerOrders);
 
   useEffect(() => {
     dispatch(getSellerProductDB());
@@ -29,38 +30,28 @@ function SellerCenter() {
           <div>
             <p>대시보드</p>
           </div>
-          <Button
+          {/* <Button
             src={PlusIcon}
             seller_nav_button
             _onClick={() => navigate("/upload")}
           >
             상품 업로드
-          </Button>
+          </Button> */}
         </Header>
         <Section>
           <div className="button-container">
-            <Button seller_tab_button>
+            {/* <Button seller_tab_button>
               판매중인 상품({sellerProducts.length})
-            </Button>
-            <Button seller_tab_button _disabled={true}>
-              주문
-            </Button>
-            <Button seller_tab_button _disabled={true}>
-              문의/리뷰
-            </Button>
-            <Button seller_tab_button _disabled={true}>
-              통계
-            </Button>
-            <Button seller_tab_button _disabled={true}>
-              부스 설정
-            </Button>
+            </Button> */}
+            <Button seller_tab_button>주문(2)</Button>
+            {/* <Button seller_tab_button>주문({sellerProducts.length})</Button> */}
           </div>
           <div className="dash-board">
             <div className="info-nav">
-              <p>상품정보</p>
+              <p>주문번호</p>
+              <p>주문상태</p>
               <p>판매가격</p>
-              <p>수정</p>
-              <p>삭제</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
             </div>
             {sellerProducts.map((p, i) => {
               console.log("p", p);
@@ -119,23 +110,12 @@ const Section = styled.div`
       height: 60px;
       background-color: #ffff;
       display: flex;
+      justify-content: space-around;
       border-bottom: 1px solid #c4c4c4;
       align-items: center;
       text-align: center;
       p {
         font-size: 18px;
-        &:first-child {
-          width: 50%;
-        }
-        &:nth-child(2) {
-          width: 30%;
-        }
-        &:nth-child(3) {
-          width: 10%;
-        }
-        &:nth-child(4) {
-          width: 10%;
-        }
       }
     }
   }
