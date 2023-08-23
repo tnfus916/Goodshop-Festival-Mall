@@ -89,12 +89,12 @@ function SignUp() {
   //ID중복검사 체크
   const dupCheck = () => {
     const signUpData = {
-      username: id,
+      id: id,
     };
     apis
       .dupcheck(signUpData)
       .then((res) => {
-        setIdMessage(res.data.Success); //setIdMessage("사용 가능한 아이디입니다.");
+        setIdMessage("사용 가능한 아이디입니다.");
       })
       .catch((error) => {
         setIdMessage(error.response.data.FAIL_Message);
@@ -214,6 +214,7 @@ function SignUp() {
       setNameMessage("필수 정보입니다");
       setIsName(false);
     } else {
+      setNameMessage("");
       setIsName(true);
     }
   };
@@ -225,6 +226,7 @@ function SignUp() {
       setIsGender(false);
     } else {
       setIsGender(true);
+      setGenderMessage("");
     }
   };
 
@@ -235,6 +237,7 @@ function SignUp() {
       setIsBirth(false);
     } else {
       setIsBirth(true);
+      setBirthMessage("");
     }
   };
 
@@ -244,6 +247,7 @@ function SignUp() {
       setPhoneNumMessage("필수 정보입니다");
       setIsPhoneNum(false);
     } else {
+      setPhoneNumMessage("");
       setIsPhoneNum(true);
     }
   };
@@ -268,15 +272,13 @@ function SignUp() {
       .catch((error) => {
         console.log(error);
         if (
-          error.response.data.booth_num ===
+          error.response.data.FAIL_Message ===
           "해당 부스의 계정이 이미 존재합니다."
         ) {
-          setSalesBoothNumMessage("해당 부스의 계정이 이미 존재합니다.");
+          setSalesBoothNumMessage(error.response.data.FAIL_Message);
           setSalesIsBoothNum(false);
-        } else if (
-          error.response.data.booth_num === "이 필드는 blank일 수 없습니다."
-        ) {
-          setSalesBoothNumMessage("필수 정보입니다.");
+        } else if (error.response.data.FAIL_Message === "필수 정보입니다.") {
+          setSalesBoothNumMessage(error.response.data.FAIL_Message);
           setSalesIsBoothNum(false);
         } else {
           setSalesBoothNumMessage("계정 생성이 가능한 부스입니다.");

@@ -4,7 +4,6 @@ import Nav from "../components/Nav";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getPaymentDB } from "../redux/modules/payment";
 import {
   darkGreyColor,
   greyColor,
@@ -20,47 +19,27 @@ function MyPage() {
   const isLogin = localStorage.getItem("token");
   const payment = useSelector((state) => state.payment.paymentList);
   const user = useSelector((state) => state.user.user);
-  const [waitOrderList, setWaitOrderList] = useState([]);
-  const [completedOrderList, setCompletedOrderList] = useState([]);
+  const [orderList, setOrderList] = useState([]);
 
   // 회원 정보 가져오기
 
   // 픽업 대기, 주문 완료에 따른 주문 리스트 가져오기
-  const getWaitingOrder = async () => {
+  const getOrder = async () => {
     apis
       .getOrder(id)
       .then((res) => {
-        setWaitOrderList((prev) => prev.concat(res.data.results));
+        setOrderList((prev) => prev.concat(res.data.results));
       })
       .error((err) => {
         console.log("주문 내역을 찾을 수 없습니다", err);
       });
   };
-
-  const getCompletedOrder = async () => {
-    apis
-      .getOrder(id)
-      .then((res) => {
-        setCompletedOrderList((prev) => prev.concat(res.data.results));
-      })
-      .error((err) => {
-        console.log("주문 내역을 찾을 수 없습니다", err);
-      });
-  };
-
-  useEffect(() => {
-    dispatch(getPaymentDB());
-  }, [dispatch]);
 
   const onEditClick = () => {
     navigate(`/mypage/edit`);
   };
 
-  const onWaitingOrderClick = (e) => {
-    navigate(`/order/${e.target.id}`);
-  };
-
-  const onCompletedOrderClick = (e) => {
+  const onOrderClick = (e) => {
     navigate(`/order/${e.target.id}`);
   };
 
@@ -91,14 +70,14 @@ function MyPage() {
             {payment && payment.length === 0 ? (
               <p>주문 내역이 없습니다.</p>
             ) : (
-              waitOrderList.map((order, idx) => {
+              orderList.map((order, idx) => {
                 return (
                   <Order key={idx}>
                     <p>{order.order_date}</p>
                     <p>{order.order_id}</p>
-                    <p>{order.payment_type}</p>
+                    <p>{order.order_state}</p>
                     <p>{order.total_price}</p>
-                    <button id={order.order_id} onClick={onWaitingOrderClick}>
+                    <button id={order.order_id} onClick={onOrderClick}>
                       주문상세
                     </button>
                   </Order>
@@ -111,7 +90,7 @@ function MyPage() {
               <p>1002131122</p>
               <p>픽업 대기</p>
               <p>23000원</p>
-              <button onClick={onCompletedOrderClick}>주문상세</button>
+              <button onClick={onOrderClick}>주문상세</button>
             </Order>
           </OrderList>
         </ContentContainer>
@@ -179,7 +158,7 @@ const OrderField = styled.div`
   background-color: ${lightMainColor};
   padding: 5px 100px 5px 5px;
   border-radius: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 `;
 
 const OrderList = styled.ul`
