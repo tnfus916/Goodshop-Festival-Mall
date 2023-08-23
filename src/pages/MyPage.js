@@ -35,12 +35,16 @@ function MyPage() {
       });
   };
 
+  // useEffect(() => {
+  //   dispatch(addPaymentDB(id));
+  // }, [dispatch, id]);
+
   const onEditClick = () => {
     navigate(`/mypage/edit`);
   };
 
   const onOrderClick = (e) => {
-    navigate(`/order/${e.target.id}`);
+    navigate(`/order-detail/${e.target.id}`);
   };
 
   return (

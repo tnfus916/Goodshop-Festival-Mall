@@ -13,7 +13,7 @@ const initialState = {
 // Action Creators
 const addPayment = createAction(ADDPAYMENT, (item) => ({ item }))
 
-export const addPatymentDB = (item) => {
+export const addPaymentDB = (item) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const navigate = useNavigate();
 
