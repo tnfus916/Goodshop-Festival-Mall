@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://13.124.218.69:5173/",
+  baseURL: "https://openmarket.weniv.co.kr/",
   headers: {
     "Content-type": "application/json;charset=UTF-8",
     accept: "application/json,",
