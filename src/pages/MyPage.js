@@ -39,12 +39,8 @@ function MyPage() {
   //   dispatch(addPaymentDB(id));
   // }, [dispatch, id]);
 
-  const onEditClick = () => {
-    navigate(`/mypage/edit`);
-  };
-
   const onOrderClick = (e) => {
-    navigate(`/order-detail/${e.target.id}`);
+    navigate(`/order-detail`);
   };
 
   return (
@@ -53,13 +49,10 @@ function MyPage() {
       <MyPageContainer>
         <ContentContainer>
           <ContentTitle>회원 정보</ContentTitle>
-          <button id="edit" onClick={onEditClick}>
-            회원정보수정
-          </button>
           <MemberInfo>
-            <p>이름: </p>
-            <p>아이디: </p>
-            <p>전화번호: </p>
+            <p>이름: ㅇㅇㅇ</p>
+            <p>아이디: test1223</p>
+            <p>전화번호: 010-0000-0000 </p>
           </MemberInfo>
         </ContentContainer>
         <ContentContainer>
@@ -71,7 +64,7 @@ function MyPage() {
             <p>주문금액</p>
           </OrderField>
           <OrderList>
-            {payment && payment.length === 0 ? (
+            {/* {payment && payment.length === 0 ? (
               <p>주문 내역이 없습니다.</p>
             ) : (
               orderList.map((order, idx) => {
@@ -87,13 +80,13 @@ function MyPage() {
                   </Order>
                 );
               })
-            )}
+            )} */}
             {/* dummy */}
             <Order>
-              <p>23/08/22</p>
+              <p>2023.08.20</p>
               <p>1002131122</p>
               <p>픽업 대기</p>
-              <p>23000원</p>
+              <p>66669원</p>
               <button onClick={onOrderClick}>주문상세</button>
             </Order>
           </OrderList>
