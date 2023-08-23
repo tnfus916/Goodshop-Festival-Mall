@@ -160,7 +160,7 @@ function Upload() {
           <SectionOne>
             <p className="caution-sentence">*상품 등록 주의사항</p>
             <div className="caution-contents">
-              <p>- 너무 귀여운 사진은 심장이 아파올 수 있습니다.</p>
+              <p>사전에 협의되지 않은 주류를 등록하면 계약 상의 위반으로 간주될 수 있습니다.</p>
             </div>
           </SectionOne>
           <SectionTwo>

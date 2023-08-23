@@ -153,7 +153,7 @@ function ProductDetail() {
               _disabled={userType === "SELLER" && true}
               _onClick={handleBuyItNow}
             >
-              바로구매
+              바로주문
             </Button>
             <Button
               width="300px"
