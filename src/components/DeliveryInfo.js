@@ -16,16 +16,12 @@ function DeliveryInfo(props) {
     shipping_fee,
     price,
     product_id,
-    product_name,
     quantity,
     order_kind,
-    store_name,
-    item,
     products,
     checkedProduct,
   } = props;
 
-  console.log(products);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -38,7 +34,9 @@ function DeliveryInfo(props) {
   const [isCheck, setIsCheck] = useState();
 
   const product = checkedProduct
-    ? checkedProduct.filter((p, i) => products[0].product_id === p.product_id)[0]
+    ? checkedProduct.filter(
+        (p, i) => products[0].product_id === p.product_id
+      )[0]
     : products;
 
   //   const fullPhoneNum = phone + phone2 + phone3;
@@ -64,9 +62,6 @@ function DeliveryInfo(props) {
           ? sumPrice
           : sumPrice + props.difference,
     };
-    
-    console.log("props");
-    console.log(props);
 
     // (임시)결제 내역 DB에 추가하기 전에 주문 완료 페이지로 연결
     navigate("/order-info", {

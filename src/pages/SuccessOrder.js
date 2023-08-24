@@ -2,13 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import Nav from "../components/Nav";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
 import Button from "../elements/Button";
 
-function SuccessOrder(props) {
+function SuccessOrder() {
   const isLogin = localStorage.getItem("token");
   const location = useLocation();
-  const cart = useSelector((state) => state.cart.cartList);
   const navigate = useNavigate();
   console.log(location.state);
   return (
@@ -28,7 +26,9 @@ function SuccessOrder(props) {
           <OrderNum>{Math.floor(Math.random() * 2000)}</OrderNum>
         </OrderNumWrapper>
         {/* 수령 정보 */}
-        <OrderBooth>수령 부스<p>{location.state.store_name}</p> </OrderBooth>
+        <OrderBooth>
+          수령 부스<p>{location.state.store_name}</p>{" "}
+        </OrderBooth>
         <OrderProducts>
           <span>{location.state.item}</span>
           {location.state.quantity === 1
@@ -89,14 +89,14 @@ const OrderBooth = styled.p`
   flex-direction: column;
   align-items: center;
   margin: 20px 0px;
-  p{
+  p {
     font-size: 18px;
     font-weight: 500;
   }
 `;
 
 const OrderProducts = styled.p`
-  span{
+  span {
     font-weight: 600;
   }
   margin-bottom: 30px;
