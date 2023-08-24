@@ -38,7 +38,7 @@ function DeliveryInfo(props) {
   const [isCheck, setIsCheck] = useState();
 
   const product = checkedProduct
-    ? checkedProduct.filter((p, i) => products[0].product_id === p.product_id)
+    ? checkedProduct.filter((p, i) => products[0].product_id === p.product_id)[0]
     : products;
 
   //   const fullPhoneNum = phone + phone2 + phone3;
@@ -64,19 +64,17 @@ function DeliveryInfo(props) {
           ? sumPrice
           : sumPrice + props.difference,
     };
-
-    console.log("id");
+    
+    console.log("props");
+    console.log(props);
 
     // (임시)결제 내역 DB에 추가하기 전에 주문 완료 페이지로 연결
     navigate("/order-info", {
       state: {
         order_kind: order_kind,
-        item: product_name,
-        store_name: store_name,
-        quantity:
-          props.order_kind === "cart_one_order" || "direct_order"
-            ? 1
-            : products.length,
+        item: product.product_name,
+        store_name: product.store_name,
+        quantity: products.length,
       },
     });
     dispatch(addPaymentDB(data));

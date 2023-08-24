@@ -28,14 +28,13 @@ function SuccessOrder(props) {
           <OrderNum>{Math.floor(Math.random() * 2000)}</OrderNum>
         </OrderNumWrapper>
         {/* 수령 정보 */}
-        <OrderBooth>수령 부스: {Math.floor(Math.random() * 11)} </OrderBooth>
+        <OrderBooth>수령 부스<p>{location.state.store_name}</p> </OrderBooth>
         <OrderProducts>
-          {location.state.item}
-          {location.state.order_kind === "cart_one_order" || "direct_order"
+          <span>{location.state.item}</span>
+          {location.state.quantity === 1
             ? ""
-            : `외 ${location.state.quantity - 1}개`}
+            : ` 외 ${location.state.quantity - 1}개`}
         </OrderProducts>{" "}
-        {/*주문상품 연동되도록 수정 필요 */}
         <Button
           children="메인으로"
           width="228px"
@@ -86,11 +85,20 @@ const OrderNum = styled.p`
 `;
 
 const OrderBooth = styled.p`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 20px 0px;
+  p{
+    font-size: 18px;
+    font-weight: 500;
+  }
 `;
 
 const OrderProducts = styled.p`
-  font-weight: bold;
+  span{
+    font-weight: 600;
+  }
   margin-bottom: 30px;
 `;
 
