@@ -15,31 +15,33 @@ function MainGrid() {
     await api
       .get(`/products/?page=${page}`)
       .then((res) => {
-        setList((prev) => prev.concat(res.data.results)); //리스트 추가
+        setList((prev) => prev.concat(res.data)); //리스트 추가
         setPage((prev) => prev + 1);
       })
       .catch((error) => {
         setMoreData(false);
+        console.log("fail");
         return;
       });
   };
 
   const target = useInfiniteScroll(async (entry, observer) => {
     await getData();
+    console.log(list);
   });
 
   return (
     <Container>
       {list.map((p, i) => {
         return (
-          <div key={p.product_id}>
+          <div key={p.id}>
             <img
               src={p.image}
               alt=""
-              onClick={() => navigate(`/detail/${p.product_id}`)}
+              onClick={() => navigate(`/detail/${p.id}`)}
             />
-            <p className="product-name">{p.store_name}</p>
-            <p className="product">{p.product_name}</p>
+            <p className="product-name">{p.booth}</p>
+            <p className="product">{p.name}</p>
             <span className="product-price">{p.price.toLocaleString()}</span>
             <span>원</span>
           </div>
