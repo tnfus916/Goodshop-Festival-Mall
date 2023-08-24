@@ -18,6 +18,8 @@ function SellerCenterItem(props) {
     //button color change
     e.target.style.backgroundColor = greyColor;
     e.target.style.color = "#fff";
+    //button text change
+    e.target.innerText = "결제완료";
 
     // change tmp element text
     const tmp = document.getElementById("tmp");
