@@ -61,6 +61,8 @@ function Payment() {
           price={location.state.total_price - location.state.shipping_fee}
           quantity={location.state.quantity}
           product_id={location.state.product_id}
+          product_name={location.state.product_name}
+          store_name={location.state.store_name}
           order_kind={location.state.order_kind}
           difference={location.state.difference}
           item={orderKind === "cart_one_order" ? location.state.item : ""}

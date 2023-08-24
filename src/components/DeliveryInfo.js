@@ -9,14 +9,17 @@ import Input from "../elements/Input";
 import Button from "../elements/Button";
 import { mainColor } from "../assets/GlobalStyle";
 import { useNavigate } from "react-router-dom";
+import product from "../redux/modules/product";
 
 function DeliveryInfo(props) {
   const {
     shipping_fee,
     price,
     product_id,
+    product_name,
     quantity,
     order_kind,
+    store_name,
     item,
     products,
     checkedProduct,
@@ -33,6 +36,10 @@ function DeliveryInfo(props) {
   const fullOrdererPhone = orderPhone + orderPhone2 + orderPhone3;
   const [paymentMethod, setPaymentMethod] = useState();
   const [isCheck, setIsCheck] = useState();
+
+  const product = checkedProduct
+    ? checkedProduct.filter((p, i) => products[0].product_id === p.product_id)
+    : products;
 
   //   const fullPhoneNum = phone + phone2 + phone3;
   //   const fullAddress = address + detailAddress;
@@ -59,17 +66,13 @@ function DeliveryInfo(props) {
     };
 
     console.log("id");
-    const product = checkedProduct.filter(
-      (p, i) => products[0].product_id === p.product_id
-    );
-    console.log(product.product_name);
 
     // (임시)결제 내역 DB에 추가하기 전에 주문 완료 페이지로 연결
     navigate("/order-info", {
       state: {
         order_kind: order_kind,
-        item: product.product_name,
-        store_name: product.store_name,
+        item: product_name,
+        store_name: store_name,
         quantity:
           props.order_kind === "cart_one_order" || "direct_order"
             ? 1
