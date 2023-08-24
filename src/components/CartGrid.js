@@ -101,9 +101,9 @@ function CartGrid(props) {
           <div className="cart-info">
             <img src={props.item?.image} alt="" />
             <div className="info-text">
-              <p>{props.item?.booth}</p>
-              <p>{props.item?.name}</p>
-              <p>{props.item?.price.toLocaleString()}</p>
+              <p>{props.item?.store_name}</p>
+              <p>{props.item?.product_name}</p>
+              <p>{props.item?.price.toLocaleString()}원</p>
             </div>
           </div>
           <Button
