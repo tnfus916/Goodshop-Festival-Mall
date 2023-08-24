@@ -1,12 +1,17 @@
 import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import {useSelector} from "react-redux";
+
 import styled from "styled-components";
 import Nav from "../components/Nav";
 import Button from "../elements/Button";
-import { useNavigate } from "react-router-dom";
 
-function SuccessOrder() {
+function SuccessOrder(props) {
   const isLogin = localStorage.getItem("token");
+  const location = useLocation();
+  const cart = useSelector((state) => state.cart.cartList);
   const navigate = useNavigate();
+  console.log(location.state);
   return (
     <div>
       <Nav user_nav children={isLogin ? "마이페이지" : "로그인"} />
@@ -24,8 +29,8 @@ function SuccessOrder() {
           <OrderNum>16</OrderNum>
         </OrderNumWrapper>
         {/* 수령 정보 */}
-        <OrderBooth>수령 부스: 임시부스명</OrderBooth>
-        <OrderProducts>츠루우메 나츠미깡 외 1개</OrderProducts>{" "}
+        <OrderBooth>수령 부스: {location.state.store_name}</OrderBooth>
+        <OrderProducts>{location.state.item}{location.state.order_kind === "cart_one_order" || "direct_order" ? "" : `외 ${location.state.quantity -1}개`}</OrderProducts>{" "}
         {/*주문상품 연동되도록 수정 필요 */}
         <Button
           children="메인으로"

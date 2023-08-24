@@ -63,6 +63,9 @@ function Payment() {
           product_id={location.state.product_id}
           order_kind={location.state.order_kind}
           difference={location.state.difference}
+          item={orderKind === "cart_one_order" ? location.state.item : "" }
+          products={location.state.checkCartItem}
+          checkedProduct={location.state.checkedProduct}
         />
       </Main>
     </div>

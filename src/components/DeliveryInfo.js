@@ -11,8 +11,17 @@ import { mainColor } from "../assets/GlobalStyle";
 import { useNavigate } from "react-router-dom";
 
 function DeliveryInfo(props) {
-  const { shipping_fee, price, product_id, quantity, order_kind } = props;
-
+  const {
+    shipping_fee,
+    price,
+    product_id,
+    quantity,
+    order_kind,
+    item,
+    products,
+    checkedProduct,
+  } = props;
+  console.log(products);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,7 +40,6 @@ function DeliveryInfo(props) {
   const paymentBtnCheck = () => {
     if (
       !isCheck ||
-      !paymentMethod ||
       !orderer ||
       fullOrdererPhone === ""
       //   fullPhoneNum === ""
@@ -53,16 +61,22 @@ function DeliveryInfo(props) {
           ? sumPrice
           : sumPrice + props.difference,
     };
+    console.log("id");
+    const product = checkedProduct.find(
+      (p, i) => products[0].product_id === p.product_id
+    );
+    console.log(product.product_name);
     // (임시)결제 내역 DB에 추가하기 전에 주문 완료 페이지로 연결
     navigate("/order-info", {
-      // state: {
-      //   total_price: sum + shippingFeeSum,
-      //   order_kind: "cart_order",
-      //   checkCartItem,
-      //   checkedProduct,
-      //   item,
-      //   shipping_fee: shippingFeeSum,
-      // },
+      state: {
+        order_kind: order_kind,
+        item: product.product_name,
+        store_name: product.store_name,
+        quantity:
+          props.order_kind === "cart_one_order" || "direct_order"
+            ? 1
+            : products.length,
+      },
     });
     dispatch(addPaymentDB(data));
   };
@@ -162,8 +176,7 @@ function DeliveryInfo(props) {
                 </p>
               </div>
               <div>
-                <div> 
-                </div>
+                <div></div>
               </div>
               <div>
                 <p>-결제금액</p>
