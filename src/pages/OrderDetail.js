@@ -18,7 +18,7 @@ function OrderDetail() {
   const cart = useSelector((state) => state.cart.cartList);
   const cartId = cart.map((c) => c.product_id);
   const item = productList.filter((i) => cartId.includes(i.product_id));
-  const sample = cart[0];
+  const sample = cart[cart.length - 1];
 
   useEffect(() => {
     const fetchOrderDetails = async () => {
@@ -60,7 +60,7 @@ function OrderDetail() {
         })} */}
 
         {/* 임시로 카트의 상품 하나를 출력 */}
-        {console.log(sample)}
+        {console.log("sample" + sample)}
         {console.log(item)}
         <PaymentGrid
           key={sample.product_id}

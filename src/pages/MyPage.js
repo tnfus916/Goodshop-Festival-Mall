@@ -51,7 +51,7 @@ function MyPage() {
           <ContentTitle>회원 정보</ContentTitle>
           <MemberInfo>
             <p>이름: ㅇㅇㅇ</p>
-            <p>아이디: test1223</p>
+            <p>아이디: charles</p>
             <p>전화번호: 010-0000-0000 </p>
           </MemberInfo>
         </ContentContainer>

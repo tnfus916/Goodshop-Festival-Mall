@@ -9,10 +9,23 @@ import Input from "../elements/Input";
 import Button from "../elements/Button";
 import { mainColor } from "../assets/GlobalStyle";
 import { useNavigate } from "react-router-dom";
+import product from "../redux/modules/product";
 
 function DeliveryInfo(props) {
-  const { shipping_fee, price, product_id, quantity, order_kind } = props;
+  const {
+    shipping_fee,
+    price,
+    product_id,
+    product_name,
+    quantity,
+    order_kind,
+    store_name,
+    item,
+    products,
+    checkedProduct,
+  } = props;
 
+  console.log(products);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -24,18 +37,16 @@ function DeliveryInfo(props) {
   const [paymentMethod, setPaymentMethod] = useState();
   const [isCheck, setIsCheck] = useState();
 
+  const product = checkedProduct
+    ? checkedProduct.filter((p, i) => products[0].product_id === p.product_id)
+    : products;
+
   //   const fullPhoneNum = phone + phone2 + phone3;
   //   const fullAddress = address + detailAddress;
   const sumPrice = price + shipping_fee;
 
   const paymentBtnCheck = () => {
-    if (
-      !isCheck ||
-      !paymentMethod ||
-      !orderer ||
-      fullOrdererPhone === ""
-      //   fullPhoneNum === ""
-    ) {
+    if (!isCheck || !orderer || fullOrdererPhone === "") {
       return true;
     } else {
       return false;
@@ -53,16 +64,20 @@ function DeliveryInfo(props) {
           ? sumPrice
           : sumPrice + props.difference,
     };
+
+    console.log("id");
+
     // (임시)결제 내역 DB에 추가하기 전에 주문 완료 페이지로 연결
     navigate("/order-info", {
-      // state: {
-      //   total_price: sum + shippingFeeSum,
-      //   order_kind: "cart_order",
-      //   checkCartItem,
-      //   checkedProduct,
-      //   item,
-      //   shipping_fee: shippingFeeSum,
-      // },
+      state: {
+        order_kind: order_kind,
+        item: product_name,
+        store_name: store_name,
+        quantity:
+          props.order_kind === "cart_one_order" || "direct_order"
+            ? 1
+            : products.length,
+      },
     });
     dispatch(addPaymentDB(data));
   };
@@ -162,8 +177,7 @@ function DeliveryInfo(props) {
                 </p>
               </div>
               <div>
-                <div> 
-                </div>
+                <div></div>
               </div>
               <div>
                 <p>-결제금액</p>
