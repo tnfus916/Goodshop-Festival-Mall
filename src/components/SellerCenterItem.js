@@ -29,13 +29,6 @@ function SellerCenterItem(props) {
   return (
     <>
       <Item>
-        {/* <div className='basic-info'>
-                <img className="product-img" src={props.image} alt="" onClick={() => navigate(`/detail/${props.product_id}`)} />
-                <div>
-                    <p>{props.product_name}</p>
-                    <p>재고: {props.stock}개</p>
-                </div>
-            </div> */}
         <div> 230822120</div>
         <div>결제 완료 </div>
         <div className="price-info">&nbsp;&nbsp;&nbsp;9,000원</div>
@@ -48,18 +41,6 @@ function SellerCenterItem(props) {
           >
             결제완료
           </Button>
-          {/* <Button
-          width="80px"
-          height="40px"
-          bg="#FFFF"
-          color="#767676"
-          border="1px solid #c4c4c4"
-          hover_color="black"
-          hover_border="1px solid #767676"
-          _onClick={() => setModal(1)}
-        >
-          삭제
-        </Button> */}
         </div>
         {modal === 1 && (
           <UserModal
@@ -79,13 +60,6 @@ function SellerCenterItem(props) {
         )}
       </Item>
       <Item>
-        {/* <div className='basic-info'>
-              <img className="product-img" src={props.image} alt="" onClick={() => navigate(`/detail/${props.product_id}`)} />
-              <div>
-                  <p>{props.product_name}</p>
-                  <p>재고: {props.stock}개</p>
-              </div>
-          </div> */}
         <div> 230822011</div>
         <div id="tmp">픽업 대기중</div>
         <div className="price-info">{props.price.toLocaleString()}원</div>
@@ -93,18 +67,6 @@ function SellerCenterItem(props) {
           <Button width="80px" height="40px" _onClick={onClickOrderComplete}>
             결제완료
           </Button>
-          {/* <Button
-        width="80px"
-        height="40px"
-        bg="#FFFF"
-        color="#767676"
-        border="1px solid #c4c4c4"
-        hover_color="black"
-        hover_border="1px solid #767676"
-        _onClick={() => setModal(1)}
-      >
-        삭제
-      </Button> */}
         </div>
         {modal === 1 && (
           <UserModal

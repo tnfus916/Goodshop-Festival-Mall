@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { getSellerProductDB } from "../redux/modules/product";
 //components
@@ -13,10 +12,8 @@ import PlusIcon from "../assets/images/icon-plus.svg";
 import { mainColor } from "../assets/GlobalStyle";
 
 function OrderList() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const sellerProducts = useSelector((state) => state.product.sellerProducts);
-  const sellerOrders = useSelector((state) => state.product.sellerOrders);
 
   useEffect(() => {
     dispatch(getSellerProductDB());
@@ -29,21 +26,10 @@ function OrderList() {
           <div>
             <p>대시보드</p>
           </div>
-          {/* <Button
-            src={PlusIcon}
-            seller_nav_button
-            _onClick={() => navigate("/upload")}
-          >
-            상품 업로드
-          </Button> */}
         </Header>
         <Section>
           <div className="button-container">
-            {/* <Button seller_tab_button>
-              판매중인 상품({sellerProducts.length})
-            </Button> */}
             <Button seller_tab_button>주문(2)</Button>
-            {/* <Button seller_tab_button>주문({sellerProducts.length})</Button> */}
           </div>
           <div className="dash-board">
             <div className="info-nav">

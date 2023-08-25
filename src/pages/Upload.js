@@ -120,20 +120,8 @@ function Upload() {
     dispatch(addProductDB(formData));
   };
 
-  // const urlToFile = async (url) => {
-  //     const response = await fetch(url);
-  //     const data = response.blob();
-  //     // const ext = url.split(".").pop()
-  //     const filename = url.split("/").pop()
-  //     const filename2 = filename.split("_").shift()
-  //     const filename3 = filename.split(".").pop()
-  //     const metadata = { type: "image/jpeg" };
-  //     return new File([data], filename2 + "." + filename3, metadata);
-  // }
-
   const handleModify = () => {
     const file = fileInput.current.files[0];
-    // const file = urlToFile(attachment)
     const formData = new FormData();
 
     formData.append("product_name", productName);

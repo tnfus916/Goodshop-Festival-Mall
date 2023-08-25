@@ -9,7 +9,6 @@ import Input from "../elements/Input";
 import Button from "../elements/Button";
 import { mainColor } from "../assets/GlobalStyle";
 import { useNavigate } from "react-router-dom";
-import product from "../redux/modules/product";
 
 function DeliveryInfo(props) {
   const {
