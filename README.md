@@ -29,79 +29,7 @@
 <br />
 
 ## 💡 주요기능
-
-## 메인페이지
-- 무한스크롤
-- 슬라이드 배너
-  
-### 구매자
-- 로그인 페이지
-- 회원 가입 페이지
-- 상품 목록 페이지
-- 상품 상세 페이지
-- 장바구니 페이지
-- 주문/결제 페이지
-- 검색 기능
-  
-### 판매자
-- 로그인 페이지
-- 회원 가입 페이지
-- 상품 목록 페이지
-- 상품 상세 페이지
-- 판매자 센터 페이지
-- 상품 등록 페이지
-
 <br/>
-
-## 회원가입
-
-<div align="center">
-  <table>
-    <tr>
-      <td align="center">
-          <img
-            src="https://im2.ezgif.com/tmp/ezgif-2-761d58b725.gif"
-            width="500px;"
-            alt=""
-          /><br/><sub><b>구매자 회원가입</b></sub><br />
-      </td>
-       <td align="center">
-          <img
-            src="https://im2.ezgif.com/tmp/ezgif-2-ca981fb945.gif"
-            width="500px;"
-            alt=""
-          /><br /><sub><b>판매자 회원가입</b></sub><br />
-      </td>
-    </tr>
-  </table>
-</div>
-
-- 구매자, 판매자별로 나누어 회원가입이 가능합니다.
-- 구매자의 경우 소비활동 데이터 수집을 위해 상별, 나이 등의 개인정보를 입력합니다.
-- 판매자의 경우 부스 운영을 위한 부스명을 입력합니다.
-
-<br />
-
-## 로그인
-
-
-<div align="center">
-  <table>
-    <tr>
-       <td align="center">
-          <img
-            src="https://im4.ezgif.com/tmp/ezgif-4-bbd643920d.gif"
-            alt=""
-          /><br /><sub><b>로그인</b></sub><br />
-      </td>
-    </tr>
-  </table>
-</div>
-
-- 회원가입과 마찬가지로 구매자, 판매자별로 나누어져 있으며, 회원가입 시 입력한 아이디와 비밀번호로 로그인합니다.
-- 로그인 후에 장바구니, 주문, 상품등록, 상품정보 수정 등의 기능을 기용 가능합니다.
-
-<br />
 
 ## 메인페이지(무한스크롤)
 
@@ -161,6 +89,55 @@
 
 <br />
 
+## 회원가입
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+          <img
+            src="https://im2.ezgif.com/tmp/ezgif-2-761d58b725.gif"
+            width="500px;"
+            alt=""
+          /><br/><sub><b>구매자 회원가입</b></sub><br />
+      </td>
+       <td align="center">
+          <img
+            src="https://im2.ezgif.com/tmp/ezgif-2-ca981fb945.gif"
+            width="500px;"
+            alt=""
+          /><br /><sub><b>판매자 회원가입</b></sub><br />
+      </td>
+    </tr>
+  </table>
+</div>
+
+- 구매자, 판매자별로 나누어 회원가입이 가능합니다.
+- 구매자의 경우 소비활동 데이터 수집을 위해 상별, 나이 등의 개인정보를 입력합니다.
+- 판매자의 경우 부스 운영을 위한 부스명을 입력합니다.
+
+<br />
+
+## 로그인
+
+
+<div align="center">
+  <table>
+    <tr>
+       <td align="center">
+          <img
+            src="https://im4.ezgif.com/tmp/ezgif-4-bbd643920d.gif"
+            alt=""
+          /><br /><sub><b>로그인</b></sub><br />
+      </td>
+    </tr>
+  </table>
+</div>
+
+- 회원가입과 마찬가지로 구매자, 판매자별로 나누어져 있으며, 회원가입 시 입력한 아이디와 비밀번호로 로그인합니다.
+- 로그인 후에 장바구니, 주문, 상품등록, 상품정보 수정 등의 기능을 기용 가능합니다.
+
+<br />
 
 ## 상품 상세 페이지
 
@@ -250,7 +227,7 @@
 
 <br />
 
-### 판매자 기능
+# 판매자 기능
 ## 상품등록
 
 <div align="center">
