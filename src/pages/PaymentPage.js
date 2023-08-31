@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import { useLocation } from "react-router-dom";
-import { getProductDB } from "../redux/modules/product";
 // Components
 import styled from "styled-components";
 import DeliveryInfo from "../components/DeliveryInfo";
@@ -9,13 +7,7 @@ import Nav from "../components/Nav";
 import PaymentGrid from "../components/PaymentGrid";
 
 function Payment() {
-  const isLogin = localStorage.getItem("token");
   const location = useLocation();
-  const productList = useSelector((state) => state.product.products);
-  const cart = useSelector((state) => state.cart.cartList);
-  const product = productList.filter(
-    (p) => p.product_id === location.state.product_id
-  );
   const orderKind = location.state.order_kind;
   const price = location.state.total_price - location.state.shipping_fee;
 
@@ -61,8 +53,13 @@ function Payment() {
           price={location.state.total_price - location.state.shipping_fee}
           quantity={location.state.quantity}
           product_id={location.state.product_id}
+          product_name={location.state.product_name}
+          store_name={location.state.store_name}
           order_kind={location.state.order_kind}
           difference={location.state.difference}
+          item={orderKind === "cart_one_order" ? location.state.item : ""}
+          products={location.state.checkCartItem}
+          checkedProduct={location.state.checkedProduct}
         />
       </Main>
     </div>

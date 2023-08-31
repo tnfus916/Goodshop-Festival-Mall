@@ -180,15 +180,6 @@ function ShoppingCart() {
     }
   }, [dispatch, itemCount]);
 
-  // useEffect(() => {
-  //     api.get(`/products/?page=${page}`).then((res) => {
-  //         setList((prev) => prev.concat(res.data.results))//리스트 추가
-  //         setPage(prev => prev + 1)
-  //     }).catch((error) => {
-  //         return;
-  //     })
-  // }, [page])
-
   return (
     <div>
       <Nav

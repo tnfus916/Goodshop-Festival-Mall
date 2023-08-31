@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { getSellerProductDB } from "../redux/modules/product";
 //components
@@ -12,15 +11,13 @@ import Button from "../elements/Button";
 import PlusIcon from "../assets/images/icon-plus.svg";
 import { mainColor } from "../assets/GlobalStyle";
 
-function SellerCenter() {
-  const navigate = useNavigate();
+function OrderList() {
   const dispatch = useDispatch();
   const sellerProducts = useSelector((state) => state.product.sellerProducts);
 
   useEffect(() => {
     dispatch(getSellerProductDB());
   }, [dispatch]);
-
   return (
     <div>
       <Nav seller_nav />
@@ -29,39 +26,17 @@ function SellerCenter() {
           <div>
             <p>대시보드</p>
           </div>
-          <Button
-            src={PlusIcon}
-            seller_nav_button
-            _onClick={() => navigate("/upload")}
-          >
-            상품 업로드
-          </Button>
         </Header>
         <Section>
           <div className="button-container">
-            <Button seller_tab_button>
-              판매중인 상품({sellerProducts.length})
-            </Button>
-            <Button
-              seller_tab_button
-              _disabled={true}
-              _onClick={() => navigate("orderlist")}
-            >
-              주문
-            </Button>
-            <Button seller_tab_button _disabled={true}>
-              통계
-            </Button>
-            <Button seller_tab_button _disabled={true}>
-              부스 설정
-            </Button>
+            <Button seller_tab_button>주문(2)</Button>
           </div>
           <div className="dash-board">
             <div className="info-nav">
-              <p>상품정보</p>
+              <p>주문번호</p>
+              <p>주문상태</p>
               <p>판매가격</p>
-              <p>수정</p>
-              <p>삭제</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
             </div>
             {sellerProducts.map((p, i) => {
               console.log("p", p);
@@ -78,7 +53,6 @@ function SellerCenter() {
     </div>
   );
 }
-
 const MainSection = styled.div`
   padding: 38px 100px 96px;
 `;
@@ -120,26 +94,15 @@ const Section = styled.div`
       height: 60px;
       background-color: #ffff;
       display: flex;
+      justify-content: space-around;
       border-bottom: 1px solid #c4c4c4;
       align-items: center;
       text-align: center;
       p {
         font-size: 18px;
-        &:first-child {
-          width: 50%;
-        }
-        &:nth-child(2) {
-          width: 30%;
-        }
-        &:nth-child(3) {
-          width: 10%;
-        }
-        &:nth-child(4) {
-          width: 10%;
-        }
       }
     }
   }
 `;
 
-export default SellerCenter;
+export default OrderList;

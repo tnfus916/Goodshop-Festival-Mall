@@ -9,7 +9,6 @@ import PaymentGrid from "../components/PaymentGrid";
 
 function OrderDetail() {
   const isLogin = localStorage.getItem("token");
-  const location = useLocation();
   const { id } = useParams();
   const [orderDetails, setOrderDetails] = useState({});
   const [orderProducts, setOrderProducts] = useState([]);
@@ -18,7 +17,8 @@ function OrderDetail() {
   const cart = useSelector((state) => state.cart.cartList);
   const cartId = cart.map((c) => c.product_id);
   const item = productList.filter((i) => cartId.includes(i.product_id));
-  const sample = cart[0];
+  const sample = cart[cart.length - 1];
+  const product = item.find((p, i) => sample.product_id === p.product_id);
 
   useEffect(() => {
     const fetchOrderDetails = async () => {
@@ -47,21 +47,7 @@ function OrderDetail() {
             <p>주문금액</p>
           </div>
         </PaymentNav>
-        {/* {orderProducts.map((item, idx) => {
-          return (
-            <PaymentGrid
-              key={item}
-              {...item}
-              item={location.state.checkedProduct.find(
-                (p, i) => item.product_id === p.product_id
-              )}
-            />
-          );
-        })} */}
 
-        {/* 임시로 카트의 상품 하나를 출력 */}
-        {console.log(sample)}
-        {console.log(item)}
         <PaymentGrid
           key={sample.product_id}
           item={item.find((p, i) => sample.product_id === p.product_id)}
@@ -70,7 +56,7 @@ function OrderDetail() {
 
         <div className="price-sum">
           <p>총 주문금액</p>
-          <p>{orderDetails.total_price}66,669원</p>
+          <p>{product.price.toLocaleString()}원</p>
         </div>
       </Main>
     </>

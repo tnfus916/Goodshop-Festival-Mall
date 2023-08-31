@@ -11,7 +11,15 @@ import { mainColor } from "../assets/GlobalStyle";
 import { useNavigate } from "react-router-dom";
 
 function DeliveryInfo(props) {
-  const { shipping_fee, price, product_id, quantity, order_kind } = props;
+  const {
+    shipping_fee,
+    price,
+    product_id,
+    quantity,
+    order_kind,
+    products,
+    checkedProduct,
+  } = props;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,18 +32,18 @@ function DeliveryInfo(props) {
   const [paymentMethod, setPaymentMethod] = useState();
   const [isCheck, setIsCheck] = useState();
 
+  const product = checkedProduct
+    ? checkedProduct.filter(
+        (p, i) => products[0].product_id === p.product_id
+      )[0]
+    : products;
+
   //   const fullPhoneNum = phone + phone2 + phone3;
   //   const fullAddress = address + detailAddress;
   const sumPrice = price + shipping_fee;
 
   const paymentBtnCheck = () => {
-    if (
-      !isCheck ||
-      !paymentMethod ||
-      !orderer ||
-      fullOrdererPhone === ""
-      //   fullPhoneNum === ""
-    ) {
+    if (!isCheck || !orderer || fullOrdererPhone === "") {
       return true;
     } else {
       return false;
@@ -53,16 +61,15 @@ function DeliveryInfo(props) {
           ? sumPrice
           : sumPrice + props.difference,
     };
+
     // (임시)결제 내역 DB에 추가하기 전에 주문 완료 페이지로 연결
     navigate("/order-info", {
-      // state: {
-      //   total_price: sum + shippingFeeSum,
-      //   order_kind: "cart_order",
-      //   checkCartItem,
-      //   checkedProduct,
-      //   item,
-      //   shipping_fee: shippingFeeSum,
-      // },
+      state: {
+        order_kind: order_kind,
+        item: product.product_name,
+        store_name: product.store_name,
+        quantity: products.length,
+      },
     });
     dispatch(addPaymentDB(data));
   };
@@ -162,8 +169,7 @@ function DeliveryInfo(props) {
                 </p>
               </div>
               <div>
-                <div> 
-                </div>
+                <div></div>
               </div>
               <div>
                 <p>-결제금액</p>

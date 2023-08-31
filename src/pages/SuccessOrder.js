@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import Nav from "../components/Nav";
+import { useNavigate, useLocation } from "react-router-dom";
 import Button from "../elements/Button";
-import { useNavigate } from "react-router-dom";
 
 function SuccessOrder() {
   const isLogin = localStorage.getItem("token");
+  const location = useLocation();
   const navigate = useNavigate();
+  console.log(location.state);
   return (
     <div>
       <Nav user_nav children={isLogin ? "마이페이지" : "로그인"} />
@@ -21,12 +23,18 @@ function SuccessOrder() {
         {/* 주문 번호 */}
         <OrderNumWrapper>
           <OrderNumTxt>주문 번호</OrderNumTxt>
-          <OrderNum>16</OrderNum>
+          <OrderNum>{Math.floor(Math.random() * 2000)}</OrderNum>
         </OrderNumWrapper>
         {/* 수령 정보 */}
-        <OrderBooth>수령 부스: 임시부스명</OrderBooth>
-        <OrderProducts>츠루우메 나츠미깡 외 1개</OrderProducts>{" "}
-        {/*주문상품 연동되도록 수정 필요 */}
+        <OrderBooth>
+          수령 부스<p>{location.state.store_name}</p>{" "}
+        </OrderBooth>
+        <OrderProducts>
+          <span>{location.state.item}</span>
+          {location.state.quantity === 1
+            ? ""
+            : ` 외 ${location.state.quantity - 1}개`}
+        </OrderProducts>{" "}
         <Button
           children="메인으로"
           width="228px"
@@ -77,11 +85,20 @@ const OrderNum = styled.p`
 `;
 
 const OrderBooth = styled.p`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 20px 0px;
+  p {
+    font-size: 18px;
+    font-weight: 500;
+  }
 `;
 
 const OrderProducts = styled.p`
-  font-weight: bold;
+  span {
+    font-weight: 600;
+  }
   margin-bottom: 30px;
 `;
 

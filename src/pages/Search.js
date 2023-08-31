@@ -6,7 +6,6 @@ import { apis } from "../shared/api";
 
 function Search() {
   const userType = localStorage.getItem("type");
-  const isLogin = localStorage.getItem("token");
   const location = useLocation();
   const [searchList, setSearchList] = useState([]);
 

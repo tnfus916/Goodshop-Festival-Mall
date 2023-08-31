@@ -13,10 +13,10 @@ import DeleteIcon from "../assets/images/icon-delete.svg";
 import ModalPortal from "../helpers/Portal";
 
 function CartGrid(props) {
-  const { cart_sum_grid, sum, shippingFeeSum, onChange, checked, isCheck } =
-    props;
+  const { cart_sum_grid, sum, onChange, checked, isCheck } = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const cartList = useSelector((state) => state.cart.cartList);
   const product = useSelector((state) => state.product.products);
   const cartId = cartList.map((c, i) => c.product_id);
@@ -35,10 +35,7 @@ function CartGrid(props) {
           quantity: props.checkCartItem[0].quantity,
           order_kind: "cart_one_order",
           total_price:
-            props.checkedProduct[0].price * props.checkCartItem[0].quantity +
-            props.checkedProduct[0].shipping_fee,
-          shipping_fee: props.item.shipping_fee,
-          difference: props.difference,
+            props.checkedProduct[0].price * props.checkCartItem[0].quantity,
         },
       });
     } else if (isCheck === false) {
@@ -106,7 +103,7 @@ function CartGrid(props) {
             <div className="info-text">
               <p>{props.item?.store_name}</p>
               <p>{props.item?.product_name}</p>
-              <p>{props.item?.price.toLocaleString()}</p>
+              <p>{props.item?.price.toLocaleString()}원</p>
             </div>
           </div>
           <Button

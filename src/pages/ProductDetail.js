@@ -37,7 +37,6 @@ function ProductDetail() {
   const [quantity, setQuantity] = useState(1);
   const [modal, setModal] = useState(0);
   const [itemDupCheck, setItemDupCheck] = useState(true);
-  const [isActive, setIsActive] = useState(0);
 
   useEffect(() => {
     dispatch(getOneProductDB(id));

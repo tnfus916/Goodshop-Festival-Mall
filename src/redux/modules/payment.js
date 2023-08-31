@@ -24,16 +24,7 @@ export const addPaymentDB = (item) => {
             .then((res) => {
                 dispatch(addPayment(res.data))
                 window.alert("구매가 성공적으로 완료되었습니다. :)")
-                navigate("/order-info", {
-                    // state: {
-                    //   total_price: sum + shippingFeeSum,
-                    //   order_kind: "cart_order",
-                    //   checkCartItem,
-                    //   checkedProduct,
-                    //   item,
-                    //   shipping_fee: shippingFeeSum,
-                    // },
-                });
+                navigate("/order-info");
             })
             .catch((error) => {
                 console.log(error)
