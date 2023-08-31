@@ -31,25 +31,6 @@
 ## 💡 주요기능
 <br/>
 
-## 메인페이지(무한스크롤)
-
-<div align="center">
-  <table>
-    <tr>
-       <td align="center">
-          <img
-            src="https://im2.ezgif.com/tmp/ezgif-2-49c88dd523.gif"
-            alt=""
-          /><br /><sub><b>메인페이지(무한스크롤)</b></sub><br />
-      </td>
-    </tr>
-  </table>
-</div>
-
-- 처음 15개 상품 데이터를 보여주고 15개 상품의 끝까지 스크롤을 내리면 15개의 상품을 추가로 생성해서 보여줍니다.
-
-<br />
-
 ## 메인페이지(슬라이드 배너)
 
 <div align="center">
@@ -57,7 +38,7 @@
     <tr>
        <td align="center">
           <img
-            src="https://im2.ezgif.com/tmp/ezgif-2-457fbf6047.gif"
+            src="https://github.com/AhnDo0/silhum/assets/51705063/d13bc2b3-7232-48dc-80b6-e822a4cd6bce"
             alt=""
           /><br /><sub><b>메인페이지(배너)</b></sub><br />
       </td>
@@ -70,6 +51,25 @@
 
 <br />
 
+## 메인페이지(무한스크롤)
+
+<div align="center">
+  <table>
+    <tr>
+       <td align="center">
+          <img
+            src="https://github.com/AhnDo0/silhum/assets/51705063/99cac5a2-bf7f-41d7-b4ab-77e572b414b3"
+            alt=""
+          /><br /><sub><b>메인페이지(무한스크롤)</b></sub><br />
+      </td>
+    </tr>
+  </table>
+</div>
+
+- 처음 15개 상품 데이터를 보여주고 15개 상품의 끝까지 스크롤을 내리면 15개의 상품을 추가로 생성해서 보여줍니다.
+
+<br />
+
 ## 검색 기능
 
 <div align="center">
@@ -77,7 +77,7 @@
     <tr>
        <td align="center">
           <img
-            src="https://im2.ezgif.com/tmp/ezgif-2-78e85c9023.gif"
+            src="https://github.com/AhnDo0/silhum/assets/51705063/6c70df82-288e-41aa-a5a4-0b8e77e1fb8a"
             alt=""
           /><br /><sub><b>검색 기능</b></sub><br />
       </td>
@@ -96,14 +96,14 @@
     <tr>
       <td align="center">
           <img
-            src="https://im2.ezgif.com/tmp/ezgif-2-761d58b725.gif"
+            src="https://github.com/AhnDo0/silhum/assets/51705063/e1350070-908f-45df-a734-65b96df46e1e"
             width="500px;"
             alt=""
           /><br/><sub><b>구매자 회원가입</b></sub><br />
       </td>
        <td align="center">
           <img
-            src="https://im2.ezgif.com/tmp/ezgif-2-ca981fb945.gif"
+            src="https://github.com/AhnDo0/silhum/assets/51705063/a64278ed-846e-4506-88a4-e02feaf69232"
             width="500px;"
             alt=""
           /><br /><sub><b>판매자 회원가입</b></sub><br />
@@ -126,7 +126,7 @@
     <tr>
        <td align="center">
           <img
-            src="https://im4.ezgif.com/tmp/ezgif-4-bbd643920d.gif"
+            src="https://github.com/AhnDo0/silhum/assets/51705063/ea6f5933-205b-4793-984b-355819441325"
             alt=""
           /><br /><sub><b>로그인</b></sub><br />
       </td>
