@@ -97,14 +97,14 @@
       <td align="center">
           <img
             src="https://github.com/AhnDo0/silhum/assets/51705063/e1350070-908f-45df-a734-65b96df46e1e"
-            width="500px;"
+            height="500px;"
             alt=""
           /><br/><sub><b>구매자 회원가입</b></sub><br />
       </td>
        <td align="center">
           <img
             src="https://github.com/AhnDo0/silhum/assets/51705063/a64278ed-846e-4506-88a4-e02feaf69232"
-            width="500px;"
+            height="500px;"
             alt=""
           /><br /><sub><b>판매자 회원가입</b></sub><br />
       </td>
@@ -144,16 +144,9 @@
 <div align="center">
   <table>
     <tr>
-      <td align="center">
-          <img
-            src="https://im4.ezgif.com/tmp/ezgif-4-0939294cf9.gif"
-            width="500px;"
-            alt=""
-          /><br/><sub><b>상세페이지(판매자 계정)</b></sub><br />
-      </td>
        <td align="center">
           <img
-            src="https://im2.ezgif.com/tmp/ezgif-2-e593a989de.gif"
+            src="https://github.com/AhnDo0/silhum/assets/51705063/3f8e215e-35f6-4918-888e-1861bf324032"
             width="500px;"
             alt=""
           /><br /><sub><b>상세페이지(구매자 계정)</b></sub><br />
@@ -175,7 +168,7 @@
     <tr>
        <td align="center">
           <img
-            src="https://im2.ezgif.com/tmp/ezgif-2-467e731136.gif"
+            src="https://github.com/AhnDo0/silhum/assets/51705063/5042ad51-fd42-4359-9543-88fd52315923"
             alt=""
           /><br /><sub><b>장바구니페이지</b></sub><br />
       </td>
@@ -194,7 +187,7 @@
     <tr>
        <td align="center">
           <img
-            src="https://im5.ezgif.com/tmp/ezgif-5-e724a1eb2a.gif"
+            src="https://github.com/AhnDo0/silhum/assets/51705063/408928a7-d6f2-4aa5-b529-41d13cec4c04"
             alt=""
           />
       </td>
@@ -214,9 +207,9 @@
     <tr>
        <td align="center">
           <img
-            src="https://im2.ezgif.com/tmp/ezgif-2-78e85c9023.gif"
+            src="https://github.com/AhnDo0/silhum/assets/51705063/b02dd5b0-dca4-4dbe-812c-646269eaef61"
             alt=""
-          /><br /><sub><b>검색 기능</b></sub><br />
+          /><br /><sub><b>주문 확인 기능</b></sub><br />
       </td>
     </tr>
   </table>
@@ -235,7 +228,8 @@
     <tr>
        <td align="center">
           <img
-            src="https://im5.ezgif.com/tmp/ezgif-5-893d1dff2e.gif"
+            src="https://github.com/AhnDo0/silhum/assets/51705063/d34465ee-b49c-458d-a6ca-4506303fa489"
+            width="500px;"
             alt=""
           /><br /><sub><b>상품등록(판매자 계정)</b></sub><br />
       </td>
@@ -256,7 +250,7 @@
     <tr>
        <td align="center">
           <img
-            src="https://im2.ezgif.com/tmp/ezgif-2-78e85c9023.gif"
+            src="https://github.com/AhnDo0/silhum/assets/51705063/702a5c9c-37fe-48c5-8769-f5c5c1e73126"
             alt=""
           /><br /><sub><b>판매자 대시보드</b></sub><br />
       </td>
